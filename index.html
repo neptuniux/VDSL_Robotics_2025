@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>References</title>
+    <style>
+        /* General Styles */
+        body {
+          font-family: 'Poppins', Arial, sans-serif;
+          background-color: #f4f7f9;
+          margin: 0;
+          padding: 2rem;
+          max-width: 900px;
+          margin: auto;
+          line-height: 1.8;
+          color: #333;
+          transition: background-color 0.3s, color 0.3s;
+        }
+    
+        /* Header */
+        h1 {
+          text-align: center;
+          font-size: 2rem;
+          color: #222;
+          margin-bottom: 1rem;
+          border-bottom: 3px solid #0073e6;
+          padding-bottom: 0.5rem;
+          display: inline-block;
+        }
+    
+        /* Search Bar */
+        .search-container {
+          text-align: center;
+          margin-bottom: 1.5rem;
+        }
+    
+        .search-input {
+          padding: 0.7rem;
+          width: 80%;
+          max-width: 500px;
+          border: 1px solid #bbb;
+          border-radius: 5px;
+          font-size: 1rem;
+        }
+    
+        /* Theme Toggle */
+        .theme-toggle {
+          text-align: right;
+          margin-bottom: 1rem;
+        }
+    
+        .theme-toggle button {
+          background: #0073e6;
+          color: white;
+          border: none;
+          padding: 0.6rem 1rem;
+          font-size: 1rem;
+          cursor: pointer;
+          border-radius: 5px;
+          transition: background 0.3s;
+        }
+    
+        .theme-toggle button:hover {
+          background: #005bb5;
+        }
+    
+        /* Reference List */
+        ol {
+          padding-left: 0;
+          counter-reset: reference-counter;
+        }
+    
+        /* Reference Item */
+        ol li {
+          background: white;
+          padding: 1.2rem;
+          border-radius: 8px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          margin-bottom: 1.2rem;
+          list-style: none;
+          position: relative;
+          counter-increment: reference-counter;
+          transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+    
+        /* Numbering */
+        ol li::before {
+          content: "[" counter(reference-counter) "] ";
+          font-weight: bold;
+          color: #0073e6;
+          font-size: 1.1rem;
+          margin-right: 5px;
+        }
+    
+        /* Hover Effect */
+        ol li:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+    
+        /* Copy Button */
+        .copy-btn {
+          background: #0073e6;
+          color: white;
+          border: none;
+          padding: 0.4rem 0.8rem;
+          font-size: 0.9rem;
+          cursor: pointer;
+          border-radius: 5px;
+          margin-left: 10px;
+          transition: background 0.3s;
+        }
+        
+        .copy-btn:hover {
+          background: #005bb5;
+        }
+    
+        /* Dark Mode */
+        body.dark-mode {
+          background-color: #222;
+          color: #f4f4f4;
+        }
+    
+        body.dark-mode li {
+          background: #333;
+        }
+    
+        body.dark-mode .theme-toggle button,
+        body.dark-mode .copy-btn {
+          background: #ffcc00;
+          color: #222;
+        }
+
+        body.dark-mode h1 {
+            color: #f4f4f4;
+        }
+    
+        /* Responsive */
+        @media (max-width: 768px) {
+          body {
+            padding: 1rem;
+          }
+    
+          h1 {
+            font-size: 1.8rem;
+          }
+        }
+    </style>
+</head>
+
+<body>
+<!-- Theme Toggle -->
+<div class="theme-toggle">
+    <button onclick="toggleTheme()">🌙 Dark Mode</button>
+  </div>
+  
+  <h1>References</h1>
+  
+  <!-- Search Bar -->
+  <div class="search-container">
+	<input type="text" class="search-input" onkeyup="filterReferences()" placeholder="🔍 Search references...">
+  </div>
+  
+
+    <!-- Start of references -->
+
+    <ol id="references"></ol>
+
+    <!-- Add more references manually here -->
+<!-- Back to Top Button -->
+<button class="back-to-top" onclick="scrollToTop()">🔝 Top</button>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      loadBibTeX();
+    });
+  
+    // Hardcoded BibTeX Data
+    const bibtexData = `
+      @inproceedings{tilleydronely2017,
+	title        = {Dronely: A Visual Block Programming Language for the Control of Drones},
+	author       = {Tilley, Eric and Gray, Jeff},
+	year         = 2017,
+	booktitle    = {Proceedings of the 2017 ACM Southeast Conference},
+	publisher    = {Association for Computing Machinery},
+	address      = {New York, NY, USA},
+	series       = {Acmse '17},
+	pages        = {208--211},
+	doi          = {10.1145/3077286.3077307},
+	isbn         = {978-1-4503-5024-2},
+	abstract     = {Dronely is a visual block programming language that allows users to build programs for the control of small drones. Dronely uses drones as a way of raising interest in computer science among K-12 students by presenting a user-friendly and intuitive drag-and-drop interface for building programs that have a physically observable effect. Although the language was designed so that simple tasks are straightforward to accomplish, more complex programs can still be implemented in Dronely. In this paper, we introduce the language features provided in Dronely and outline the implementation details of using Blockly on an Android device.},
+	keywords     = {Autonomous Vehicles,Blocks-based Programming,Computer Science Education},
+	
+    }   
+    @inproceedings{babaeisolving2021,
+        title        = {Solving the RoboSoccer Challenge Problem with UML-RT and Papyrus-RT},
+        author       = {Babaei, Majid and Jahed, Karim and Dingel, Juergen},
+        year         = 2021,
+        booktitle    = {Proceedings of the 22nd International Conference on Model Driven Engineering Languages and Systems},
+        publisher    = {IEEE Press},
+        address      = {Munich, Germany},
+        series       = {MODELS '19},
+        pages        = {221--227},
+        doi          = {10.1109/MODELS-C.2019.00036},
+        isbn         = {978-1-7281-5125-0},
+        abstract     = {We demonstrate and evaluate the use of the UML-RT modeling language and an extension of Eclipse Papyrus-RT, an open source model-driven development tool, to solve the RoboSoccer challenge problem. The problem requires participants to create an executable model of a robotic rover playing soccer in a simulated playing field against another rover. Our extension supports TCP communication which is used to connect the model and the simulation in a bi-directional fashion. We evaluate the performance of our model using a set of scenarios, each examining a certain aspect of our proposed solution.},
+        keywords     = {model-based debugging,model-driven development,real-time and embedded systems,robosoccer,Selected - Profile,UML-RT},
+        
+    }
+
+@article{bernarditowards2019,
+	title        = {Towards a Model-Driven Engineering Approach for the Assessment of Non-Functional Properties Using Multi-Formalism},
+	author       = {Bernardi, Simona and Marrone, Stefano and Merseguer, José and Nardone, Roberto and Vittorini, Valeria},
+	year         = 2019,
+	month        = {jun},
+	journal      = {Software \& Systems Modeling},
+	volume       = 18,
+	number       = 3,
+	pages        = {2241--2264},
+	doi          = {10.1007/s10270-018-0663-8},
+	issn         = {1619-1374},
+	urldate      = {2024-12-10},
+	abstract     = {Model-driven techniques can be used to automatically produce formal models from different views of a system realised by using several modelling languages and notations. Specifications are transformed into formal models so facilitating the analysis of complex system for design, validation or verification purposes. However, no single formalism suits for representing all system's views. In particular, the assessment of non-functional properties often requires integrated modelling approaches. The ultimate goal of the research work described in this paper is to develop a comprehensive, theoretical and practical framework able to support the development and the integration of new or existing model-driven approaches for the automatic generation of multi-formalism models. This paper defines the core theoretical ideas on which the framework is based and demonstrates their concrete applicability to the development of a multi-formalism approach for performability assessment.},
+	langid       = {english},
+	keywords     = {Generalised Stochastic Petri Nets,Model-driven engineering,Multi-formalism,Performability,Repairable fault trees,Selected - New,UML profile},
+	
+}
+@article{bertoaincorporating2020,
+	title        = {Incorporating Measurement Uncertainty into OCL/UML Primitive Datatypes},
+	author       = {Bertoa, Manuel F. and Burgueño, Loli and Moreno, Nathalie and Vallecillo, Antonio},
+	year         = 2020,
+	month        = {sep},
+	journal      = {Software and Systems Modeling},
+	volume       = 19,
+	number       = 5,
+	pages        = {1163--1189},
+	doi          = {10.1007/s10270-019-00741-0},
+	issn         = {1619-1374},
+	urldate      = {2024-12-10},
+	abstract     = {The correct representation of the relevant properties of a system is an essential requirement for the effective use and wide adoption of model-based practices in industry. Uncertainty is one of the inherent properties of any measurement or estimation that is obtained in any physical setting; as such, it must be considered when modeling software systems deal with real data. Although a few modeling languages enable the representation of measurement uncertainty, these aspects are not normally incorporated into their type systems. Therefore, operating with uncertain values and propagating their uncertainty become cumbersome processes, which hinder their realization in real environments. This paper proposes an extension of OCL/UML primitive datatypes that enables the representation of the uncertainty that comes from physical measurements or user estimates into the models, together with an algebra of operations that are defined for the values of these types.},
+	langid       = {english},
+	keywords     = {Measurement uncertainty,OCL,Primitive datatypes,Selected - Profile,UML},
+	
+}
+@inproceedings{chengac-ros2020,
+	title        = {AC-ROS: Assurance Case Driven Adaptation for the Robot Operating System},
+	author       = {Cheng, Betty H. C. and Clark, Robert Jared and Fleck, Jonathon Emil and Langford, Michael Austin and McKinley, Philip K.},
+	year         = 2020,
+	booktitle    = {Proceedings of the 23rd ACM/IEEE International Conference on Model Driven Engineering Languages and Systems},
+	publisher    = {Association for Computing Machinery},
+	address      = {New York, NY, USA},
+	series       = {MODELS '20},
+	pages        = {102--113},
+	doi          = {10.1145/3365438.3410952},
+	isbn         = {978-1-4503-7019-6},
+	abstract     = {Cyber-physical systems that implement self-adaptive behavior, such as autonomous robots, need to ensure that requirements remain satisfied across run-time adaptations. The Robot Operating System (ROS), a middleware infrastructure for robotic systems, is widely used in both research and industrial applications. However, ROS itself does not assure self-adaptive behavior. This paper introduces AC-ROS, which fills this gap by using assurance case models at run time to manage the self-adaptive operation of ROS-based systems. Assurance cases provide structured arguments that a system satisfies requirements and can be specified graphically with Goal Structuring Notation (GSN) models. AC-ROS uses GSN models to instantiate a ROS-based MAPE-K framework, which in turn uses these models at run time to assure system behavior adheres to requirements across adaptations. For this study, AC-ROS is implemented and tested on EvoRally, a 1:5-scale autonomous vehicle.},
+	keywords     = {assurance case,cyber-physical systems,digital twin,goal structuring notation,robot operating system,Selected - Profile,self-adaptive systems},
+	
+}
+@article{corradinitechnique2024,
+	title        = {A Technique for Discovering BPMN Collaboration Diagrams},
+	author       = {Corradini, Flavio and Pettinari, Sara and Re, Barbara and Rossi, Lorenzo and Tiezzi, Francesco},
+	year         = 2024,
+	month        = {feb},
+	journal      = {Software and Systems Modeling},
+	doi          = {10.1007/s10270-024-01153-5},
+	issn         = {1619-1374},
+	urldate      = {2024-12-10},
+	abstract     = {The process mining domain is actively supported by techniques and tools addressing the discovery of single-participant business processes. In contrast, approaches for discovering collaboration models out of distributed data stored by multiple interacting participants are lacking. In this context, we propose a novel technique for discovering collaboration models from sets of event logs that include data about participants' interactions. The technique discovers each participant's process through already available algorithms introduced by the process mining community. Then, it analyzes the logs to extract information on the exchange of messages to automatically combine the discovered processes into a collaboration model representing the distributed system's behavior and providing analytics on the interactions. The technique has been implemented in a tool evaluated via several experiments on different application domains.},
+	langid       = {english},
+	keywords     = {BPMN collaborations,Discovery,Messages analysis,Selected - Profile},
+	
+}
+@inproceedings{dattaarchitecture2017,
+	title        = {Architecture of an Extensible Visual Programming Environment for Authoring Behaviour of Personal Service Robots},
+	author       = {Datta, Chandan and MacDonald, Bruce A.},
+	year         = 2017,
+	month        = {apr},
+	booktitle    = {2017 First IEEE International Conference on Robotic Computing (IRC)},
+	pages        = {156--159},
+	doi          = {10.1109/IRC.2017.60},
+	urldate      = {2024-12-19},
+	abstract     = {Programming tasks on personal service robots in multi-disciplinary teams is challenging. The goal of this research is to enable roboticists and non-programmer domain experts to co-develop robot service scenarios in real world environments using a visual programming environment called RoboStudio. The first key contribution of this paper is presenting the implementation architecture of RoboStudio. This is important as it serves as a case study for smaller teams with limited resources to expedite the process of building visual programming environments without the deep knowledge of frameworks and meta-modelling tools required for building complex visual environments. The second key contribution presents the model and design of components for parsing, generating, validating and visualising the RBDL. The third contribution elicits how we evaluated RoboStudio's design and functionality through code-generation of scripts for several service applications deployed in the real world on the University of Auckland's Healthbot. We also show RoboStudio's extensibility by building other visual languages on this platform.},
+	keywords     = {Computer architecture,Control Architectures and Programming,Layout,Middleware and Programming Environments,Programming environments,Selected - New,Service robots,Social Human-Robot Interaction,Software,Visualization},
+	
+}
+@inproceedings{daunsafety2023,
+	title        = {Safety Analysis of~Human Robot Collaborations with~GRL Goal Models},
+	author       = {Daun, Marian and Manjunath, Meenakshi and Jesus Raja, Jeshwitha},
+	year         = 2023,
+	booktitle    = {Conceptual Modeling},
+	publisher    = {Springer Nature Switzerland},
+	address      = {Cham},
+	pages        = {317--333},
+	doi          = {10.1007/978-3-031-47262-6_17},
+	isbn         = {978-3-031-47262-6},
+	editor       = {Almeida, João Paulo A. and Borbinha, José and Guizzardi, Giancarlo and Link, Sebastian and Zdravkovic, Jelena},
+	abstract     = {Currently, we see a rapid digitization of manufacturing processes using robotic systems. However, not all work can be automatized at reasonable cost in the foreseeable future. As a consequence, human-robot collaborations are defined for complex work tasks. In human-robot collaborations, humans and robots share the same working space and work in parallel in close vicinity. In addition, humans and robots work at the same time on the same task. Per definition, human-robot collaborations must be considered safety-critical and be treated as such. Therefore, not only must the adaptive behavior of the robot be specified to perfectly align with the expected human behavior, but safety analyses are mandated to specify potential hazards harming the human, the robot, or the work product. To support meaningful safety analyses and thereby the identification of needed monitoring and safety mechanism to be implemented as early as possible, we investigate the use of GRL goal models to specify safety threats in human robot collaboration and foster the definition of safety tasks.},
+	langid       = {english},
+	keywords     = {Selected - Profile},
+	
+}
+@inproceedings{ebertmodel-driven2020,
+	title        = {A Model-Driven Approach for Cobotic Cells Based on Petri Nets},
+	author       = {Ebert, Sebastian},
+	year         = 2020,
+	booktitle    = {Proceedings of the 23rd ACM/IEEE International Conference on Model Driven Engineering Languages and Systems: Companion Proceedings},
+	publisher    = {Association for Computing Machinery},
+	address      = {New York, NY, USA},
+	series       = {MODELS '20},
+	doi          = {10.1145/3417990.3419487},
+	isbn         = {978-1-4503-8135-2},
+	abstract     = {The advance in the development of industrial robots has accelerated significantly in recent years. One of the driving forces behind this is collaboration between humans and robots in shared working areas, resulting in increased productivity and thus reduced cost. Unfortunately, the development of software for collaborating robots is a complex, time-intensive, and demanding task. This is because robotic technology changes fast and knowledge is hard to make available for reuse. Hence, a model-driven approach is necessary to facilitate the development of software for collaborating robots. This work will introduce such a model-driven approach based on hybrid Petri nets, as a formal technique for modeling the various aspects of robotic software. Therefore, specific challenges of employing Petri net based models are discussed, focusing on the management, usage and adaptation of the different models required for applications of collaborating robots. Building on that, a model-driven architecture is proposed, which solves the identified challenges of application development for collaborating robots.},
+	keywords     = {actor model,context adaptation,macromodeling,robotics,Selected - Profile},
+	
+}
+@article{falconeruntime2015,
+	title        = {Runtime Verification of Component-Based Systems in the BIP Framework with Formally-Proved Sound and Complete Instrumentation},
+	author       = {Falcone, Yliès and Jaber, Mohamad and Nguyen, Thanh-Hung and Bozga, Marius and Bensalem, Saddek},
+	year         = 2015,
+	month        = {feb},
+	journal      = {Software \& Systems Modeling},
+	volume       = 14,
+	number       = 1,
+	pages        = {173--199},
+	doi          = {10.1007/s10270-013-0323-y},
+	issn         = {1619-1374},
+	urldate      = {2024-12-10},
+	abstract     = {Verification of component-based systems still suffers from limitations such as state space explosion since a large number of different components may interact in a heterogeneous environment. These limitations entail the need for complementary verification methods such as runtime verification. Runtime verification is a dynamic analysis technique and is prone to scalability. In this paper, we integrate runtime verification into the BIP (Behavior, Interaction and Priority) framework. BIP is a powerful and expressive component-based framework for the formal construction of heterogeneous systems. Our method augments BIP systems with monitors to check specifications at runtime. This method has been implemented in RV-BIP, a prototype tool that we used to validate the whole approach on a robotic application.},
+	langid       = {english},
+	keywords     = {Component-based systems,Formal methods,Instrumentation,Runtime verification,Selected - Profile},
+	
+}
+@inproceedings{fendcpsaml2022,
+	title        = {CPSAML: A Language and Code Generation Framework for Digital Twin Based Monitoring of Mobile Cyber-Physical Systems},
+	author       = {Fend, Andreas and Bork, Dominik},
+	year         = 2022,
+	booktitle    = {Proceedings of the 25th International Conference on Model Driven Engineering Languages and Systems: Companion Proceedings},
+	publisher    = {Association for Computing Machinery},
+	address      = {New York, NY, USA},
+	series       = {MODELS '22},
+	pages        = {649--658},
+	doi          = {10.1145/3550356.3563134},
+	isbn         = {978-1-4503-9467-3},
+	abstract     = {Cyber-physical systems (CPS) are finding increasing use, whether in factories, autonomous vehicles, or smart buildings. Monitoring the execution of CPSs is crucial since CPSs directly influence their physical environment. Like the actual system, the monitoring application must be designed, developed, and tested. Mobile CPSs, in contrast to stationary CPSs, bring the additional requirement that instances can dynamically join, leave, or fail during execution time. This dynamic behavior must also be considered in the monitoring application. This paper presents CPSAML, a language and code generation framework for the model-driven development of mobile CPS systems, including a cockpit application for monitoring and interacting with such a system. The pipeline starts with the formulation of the system and the CPSs it contains at an abstract level by the system architect using a domain-specific modeling language. Next, this model is transformed into SysML 2 for further extension and richer specificity by system engineers on a more technical level. In the last step of the pipeline, the SysML 2 model is used to generate code for the CPS devices, a system-wide digital twin, and the cockpit application mentioned above. This cockpit enables the operator to configure and apply the monitoring and interaction with the system during runtime. We evaluate our CPSAML language and code generation framework on an Indoor Transport System case study with Roomba vacuum cleaner robots.},
+	keywords     = {cyber-physical systems,digital twin,model-driven engineering,multi-paradigm modeling,Selected - New},
+	
+}
+@article{fossdalfabricatable2022,
+	title        = {Fabricatable Axis: An Approach for Modelling Customized Fabrication Machines},
+	shorttitle   = {Fabricatable Axis},
+	author       = {Fossdal, Frikk H. and Heldal, Rogardt and Dyvik, Jens and Rutle, Adrian},
+	year         = 2022,
+	month        = {oct},
+	journal      = {Software and Systems Modeling},
+	volume       = 21,
+	number       = 5,
+	pages        = {1907--1929},
+	doi          = {10.1007/s10270-022-01007-y},
+	issn         = {1619-1374},
+	urldate      = {2024-12-10},
+	abstract     = {Digital fabrication tools such as 3D printers, computer-numerically controlled (CNC) milling machines, and laser cutters are becoming increasingly available, ranging from consumer to industrial versions. Recent studies have shown that users, ranging from researchers, to industry professionals, to hobbyists, are interested in modifying and changing the inherit workflows these tools provide. As an answer to this, these users are increasingly modifying and customizing their machines by changing the work envelope, adding different end-effectors, and creating their own fabrication workflows in software. However, customizing, modifying and creating digital fabrication machines and the workflows they provide require extensive knowledge within multiple different engineering domains and is non-trivial. In this article we present a model-driven approach that enables users to expand their digital fabrication scope by providing a high-level tool that facilitates the customization of fabrication tools. We present The Farbicatable Axis, a model that enables users to create customized linear actuators. The model takes high-level input parameters such as length and gearing-parameters, and outputs a CAD model of a linear motion axis consisting of fabricatable parts. We then present how instances of the Fabricatable Axis can be combined and used to design and implement Fabricatable Machines.},
+	langid       = {english},
+	keywords     = {CAD/CAM,CNC,Digital fabrication,Machine building,Model driven engineering,Selected - New},
+	
+}
+@inproceedings{fossdalparametric2020,
+	title        = {A Parametric Model for Creating Customized Fabrication Machines},
+	author       = {Fossdal, Frikk H and Heldal, Rogardt and Dyvik, Jens and Rutle, Adrian},
+	year         = 2020,
+	booktitle    = {Proceedings of the 23rd ACM/IEEE International Conference on Model Driven Engineering Languages and Systems},
+	publisher    = {Association for Computing Machinery},
+	address      = {New York, NY, USA},
+	series       = {MODELS '20},
+	pages        = {143--153},
+	doi          = {10.1145/3365438.3410960},
+	isbn         = {978-1-4503-7019-6},
+	abstract     = {Digital fabrication tools such as 3D printers, computer-numerically controlled (CNC) milling machines, and laser cutters are becoming increasingly available, ranging from consumer to industrial versions. Although these tools have enabled a completely new set of users to take part in manufacturing, they are still limited in their use and the workflows they provide. As an answer to this, users are modifying and customizing their machines by changing the work envelope and adding different end-effectors. However, customizing, modifying and creating digital fabrication machines require extensive knowledge within multiple different engineering domains, and is non-trivial. In this paper, we present The Fabricatable Axis, a high-level parametric model that aims to simplify the process of experimenting, customizing and implementing digital fabrication machines. This model encapsulates the knowledge of an experienced machine designer into a model that less experienced machine builders can use to design and customize linear and rotary motion axes which can be combined into different machines. The model receives high-level input parameters such as axis type, length and speed-parameters, and outputs a CAD model of a motion axis consisting of fabricatable parts (parts that are readily available or parts that can be fabricated using accessible tools such as a CNC milling machine). To validate our contribution, we first present a constructed scenario were we use the model to implement a specific machine. Secondly, we present an evaluation of our tool through a series of interviews with users who have been using the model to create different types of machines.},
+	keywords     = {CAD/CAM,CNC,digital fabrication,machine building,model driven engineering,Selected - New},
+	
+}
+@inproceedings{gammaitonirpsl2016,
+	title        = {RPSL Meets Lightning: A Model-Based Approach to Design Space Exploration of Robot Perception Systems},
+	shorttitle   = {RPSL Meets Lightning},
+	author       = {Gammaitoni, Loïc and Hochgeschwender, Nico},
+	year         = 2016,
+	month        = {dec},
+	booktitle    = {2016 IEEE International Conference on Simulation, Modeling, and Programming for Autonomous Robots (SIMPAR)},
+	pages        = {75--82},
+	doi          = {10.1109/SIMPAR.2016.7862378},
+	urldate      = {2024-12-19},
+	abstract     = {The design space of a robotic application defines at a meta level what are all of its possible implementations. Those possibilities are called design alternatives and differ on many different aspects, one being preferred to the other depending on how, where, when or what the application should do. Design Space Exploration (DSE) is the process of reviewing those design alternatives, prior to their implementation, with intention to verify that the set of all design alternatives to be implemented covers all the possible scenarios in which the application is to be executed. In this paper we address two challenges related to DSE, namely, (1) the formal definitions of design spaces, a non-trivial task due to the many dimensions to be taken into consideration, and (2) the automatisation of DSE, that is, enabling a domain expert to review design alternatives corresponding to a given design space effortlessly. In this paper, we address those challenges in the context of robot perception software systems by combining two already existing technologies, namely RPSL for the specification of robot perception system's design spaces and Lightning, a language workbench that we use to formalise RPSL and obtain, from RPSL specifications, corresponding design alternatives.},
+	keywords     = {Lightning,Metals,Robot sensing systems,Selected - New,Space exploration,Visualization},
+	
+}
+@article{gilarchitecture2024,
+	title        = {An Architecture for Coupled Digital Twins with Semantic Lifting},
+	author       = {Gil, Santiago and Kamburjan, Eduard and Talasila, Prasad and Larsen, Peter Gorm},
+	year         = 2024,
+	month        = {nov},
+	journal      = {Software and Systems Modeling},
+	doi          = {10.1007/s10270-024-01221-w},
+	issn         = {1619-1374},
+	urldate      = {2024-12-10},
+	abstract     = {To enable the reuse of Digital Twins, in the form of simulation units or other forms of behavioral models, of single physical components, one must be able to connect and couple them. Current platform and architectures consider mostly monolithic digital twins and offer little support for coupling and checking the consistency of the coupling. The coupling must be internally consistent---satisfy constraints related to their co-simulation---and externally consistent---mirror the structure of the composed physical system. In this paper, we propose an extension to a behavior-extended Digital Twin architecture for individual Digital Twins to include co-simulation scenarios for coupled systems lifted from configuration files, which can be implemented along with a Digital-Twin-as-a-Service platform to make assets reusable in time. To monitor and query these connections, we introduce a semantic lifting service, which interprets the coupled Digital Twins as Knowledge Graphs and enables the use of queries to express internal and external consistency constraints. Two representative case studies for systems with coupled behavior are used for the demonstration of this approach and show that it indeed enables reusability of components and services between different Digital Twins.},
+	langid       = {english},
+	keywords     = {Behavioral model,Co-simulation,Digital twin,Knowledge graph,Selected - Profile},
+	
+}
+@article{hammoudehgarcabootstrapping2021,
+	title        = {Bootstrapping MDE Development from ROS Manual Code: Part 2---Model Generation and Leveraging Models at Runtime},
+	shorttitle   = {Bootstrapping MDE Development from ROS Manual Code},
+	author       = {Hammoudeh~García, Nadia and Deshpande, Harshavardhan and Santos, André and Kahl, Björn and Bordignon, Mirko},
+	year         = 2021,
+	month        = {dec},
+	journal      = {Software and Systems Modeling},
+	volume       = 20,
+	number       = 6,
+	pages        = {2047--2070},
+	doi          = {10.1007/s10270-021-00873-2},
+	issn         = {1619-1374},
+	urldate      = {2024-12-10},
+	abstract     = {Model-driven engineering (MDE) addresses central aspects of robotics software development. MDE could enable domain experts to leverage the expressiveness of models, while implementation details on different hardware platforms would be handled by automatic code generation. Today, despite strong MDE efforts in the robotics research community, most evidence points to manual code development being the norm. A possible reason for MDE not being accepted by robot software developers could be the wide range of applications and target platforms, which make all-encompassing MDE IDEs hard to develop and maintain. Therefore, we chose to leverage a large corpus of open-source software widely adopted by the robotics community to extract common structures and gain insight on how and where MDE can support the developers to work more efficiently. We pursue modeling as a complement, rather than imposing MDE as separate solution. Our previous work introduced metamodels to describe components, their interactions, and their resulting composition. In this paper, we present two methods based on metamodels for automated generation of models from manually written artifacts: (1) through static code analysis and (2) by monitoring the execution of a running system. For both methods, we present tools that leverage the potentials of our contributions, with a special focus on their application at runtime to observe and diagnose a real system during its execution. A comprehensive example is provided as a walk-through for robotics software practitioners.},
+	langid       = {english},
+	keywords     = {MDE,Models,Robotics,ROS,Selected - New},
+	
+}
+@inproceedings{huangenabling2022,
+	title        = {Enabling Semantic Interoperability of Asset Administration Shells through an Ontology-Based Modeling Method},
+	author       = {Huang, Yining and Dhouib, Saadia and Medinacelli, Luis Palacios and Malenfant, Jacques},
+	year         = 2022,
+	month        = {nov},
+	booktitle    = {Proceedings of the 25th International Conference on Model Driven Engineering Languages and Systems: Companion Proceedings},
+	publisher    = {Association for Computing Machinery},
+	address      = {New York, NY, USA},
+	series       = {MODELS '22},
+	pages        = {497--502},
+	doi          = {10.1145/3550356.3561606},
+	isbn         = {978-1-4503-9467-3},
+	urldate      = {2024-12-13},
+	abstract     = {Digital twin technology establishes the future development vision for Industry 4.0, and is also an important exploration direction for the Model-Driven Engineering (MDE) paradigm. Because it builds a more flexible and communicative production system through models that spans life cycle, hierarchy and architecture. The standard proposed under the concept of Industry 4.0, the Asset Administration Shell (AAS), provides a syntactic interoperability interface for all assets involved in smart factories. However, there is still a need to fill the gap regarding semantic interoperability, in order to allow efficient interactions between Industry 4.0 components. Ontologies are a good candidate because they provide formal semantics expressed using a knowledge representation language, and in addition, there are many associated mature tools for reasoning and inference. Therefore, we propose a modeling approach that provides semantic interoperability for AAS-based digital twins using ontologies.},
+	
+}
+@article{langfordmodalas2023,
+	title        = {MoDALAS: Addressing Assurance for Learning-Enabled Autonomous Systems in the Face of Uncertainty},
+	shorttitle   = MoDALAS,
+	author       = {Langford, Michael Austin and Chan, Kenneth H. and Fleck, Jonathon Emil and McKinley, Philip K. and Cheng, Betty H. C.},
+	year         = 2023,
+	month        = {oct},
+	journal      = {Software and Systems Modeling},
+	volume       = 22,
+	number       = 5,
+	pages        = {1543--1563},
+	doi          = {10.1007/s10270-023-01090-9},
+	issn         = {1619-1374},
+	urldate      = {2024-12-10},
+	abstract     = {Increasingly, safety-critical systems include artificial intelligence and machine learning components (i.e., learning-enabled components (LECs)). However, when behavior is learned in a training environment that fails to fully capture real-world phenomena, the response of an LEC to untrained phenomena is uncertain and therefore cannot be assured as safe. Automated methods are needed for self-assessment and adaptation to decide when learned behavior can be trusted. This work introduces a model-driven approach to manage self-adaptation of a learning-enabled system (LES) to account for run-time contexts for which the learned behavior of LECs cannot be trusted. The resulting framework enables an LES to monitor and evaluate goal models at run time to determine whether or not LECs can be expected to meet functional objectives and enables system adaptation accordingly. Using this framework enables stakeholders to have more confidence that LECs are used only in contexts comparable to those validated at design time.},
+	langid       = {english},
+	keywords     = {Artificial intelligence,Artificial Intelligence,Autonomous vehicles,Behavior oracles,Cyber physical systems,Goal-based modeling,Machine learning,Models at run time,Selected - New,Self-adaptive systems},
+	
+}
+@inproceedings{lettnerfeature2015,
+	title        = {Feature Modeling of Two Large-Scale Industrial Software Systems: Experiences and Lessons Learned},
+	shorttitle   = {Feature Modeling of Two Large-Scale Industrial Software Systems},
+	author       = {Lettner, Daniela and Eder, Klaus and Grünbacher, Paul and Prähofer, Herbert},
+	year         = 2015,
+	month        = {sep},
+	booktitle    = {2015 ACM/IEEE 18th International Conference on Model Driven Engineering Languages and Systems (MODELS)},
+	pages        = {386--395},
+	doi          = {10.1109/MODELS.2015.7338270},
+	urldate      = {2024-12-12},
+	abstract     = {Feature models are frequently used to capture the knowledge about configurable software systems and product lines. However, feature modeling of large-scale systems is challenging as many models are needed for diverse purposes. For instance, feature models can be used to reflect the perspectives of product management, technical solution architecture, or product configuration. Furthermore, models are required at different levels of granularity. Although numerous approaches and tools are available, it remains hard to define the purpose, scope, and granularity of feature models. In this paper we thus present experiences of developing feature models for two large-scale industrial automation software systems. Specifically, we extended an existing feature modeling tool to support models for different purposes and at multiple levels. We report results on the characteristics and modularity of the feature models, including metrics about model dependencies. We further discuss lessons learned during the modeling process.},
+	keywords     = {Adaptation models,Automation,Cavity resonators,experience report,feature modeling,industrial software systems,Robots,Selected - Profile,Software systems,Unified modeling language},
+	
+}
+@inproceedings{mayr-dornconsiderations2021,
+	title        = {Considerations for Using Block-Based Languages for Industrial Robot Programming - a Case Study},
+	author       = Mayr-Dorn}, Christoph and Winterer, Mario and Salomon, Christian and Hohensinger, Doris and Ramler, Rudolf},
+	year         = 2021,
+	month        = {jun},
+	booktitle    = {2021 IEEE/ACM 3rd International Workshop on Robotics Software Engineering (RoSE)},
+	pages        = {5--12},
+	doi          = {10.1109/RoSE52553.2021.00008},
+	urldate      = {2024-12-19},
+	abstract     = {The paradigm shift triggered by Industry 4.0 leads to a fast rising number of industrial machinery and collaborative robots that increases the need for flexible customization of production processes and automation workflows. End-user programming of industrial robots has become an essential capability for all areas in industry. Consequently, different visual programming languages have found their way into the domain of industrial robot programming. In this paper, we investigate the applicability of block-based programming languages for large and complex robot programs in realistic environments. Here, a key aspect of robot programming is not only the interaction with the physical environment, but also the robot's interaction with other shopfloor participants at the software control level. To this end, we analysed the requirements for programming a robot based a real world production cell and implemented the necessary programming constructs using Blockly, an open-source block-based visual language. We assessed the results comparing the implementation of a change in Blockly and the Sequential Function Chart-based language. We find that while Blockly is able to express large and complex real-world robot programs, a major contributing factor is not just the language itself but the presentation of the robot's run-time environment as well as support by the development environment (i.e., editor). Our preliminary user experiment has identified a set of challenges in understanding and changing such programs that we now plan to follow-up with a larger user study.},
+	keywords     = {block-based programming languages,Computer languages,Conferences,end-user programming,Industries,Machinery,manufacturing automation,Production,Robot programming,Selected - New,Service robots,Visualization},
+	
+}
+@inproceedings{medinacelliaugmenting2022,
+	title        = {Augmenting Model-Based Systems Engineering with Knowledge},
+	author       = {Medinacelli, Luis Palacios and Noyrit, Florian and Mraidha, Chokri},
+	year         = 2022,
+	booktitle    = {Proceedings of the 25th International Conference on Model Driven Engineering Languages and Systems: Companion Proceedings},
+	publisher    = {Association for Computing Machinery},
+	address      = {New York, NY, USA},
+	series       = {MODELS '22},
+	pages        = {351--358},
+	doi          = {10.1145/3550356.3561548},
+	isbn         = {978-1-4503-9467-3},
+	abstract     = {This article presents a general approach for the integration of Knowledge Bases into Model-Based Systems Engineering tools. In existing tools, domain-specific modeling languages are well supported. However when it comes to enforcing design constraints, existing approaches are verbose, it is difficult to be complete and consistent, and the reuse of knowledge is only possible in a limited way (mainly through model libraries). Furthermore, current tools usually lack or have limited capability to detect semantic errors, ability to evaluate the models with respect to formal expert knowledge, and the ability to understand what is being designed. Our work addresses these limitations through the semantic annotation of UML models in Papyrus (an MBSE Tool), to attach domain-specific semantics to the models. This integration enables not only reasoning capabilities over the annotated models, but the models can be shared with semantic-compatible tools and stakeholders. Moreover, the models can reuse and integrate knowledge generated outside the tooling environment. The approach's feasibility is demonstrated through an implementation that defines a technology stack, with emphasis on the mapping of UML elements and its counterparts in the ontology. We address the coherence and preservation of the semantics throughout the transformation process, which enable the formalization of constraints coming from the UML's system design. Finally, we illustrate the reasoning capabilities by evaluating expert knowledge via SPARQL queries and SWRL rules.},
+	keywords     = {knowledge based engineering,model-driven engineering,ontology,Papyrus,Selected - Profile,semantic interoperability,UML},
+	
+}
+@article{miyazawarobochart2019,
+	title        = {RoboChart: Modelling and Verification of the Functional Behaviour of Robotic Applications},
+	shorttitle   = RoboChart,
+	author       = {Miyazawa, Alvaro and Ribeiro, Pedro and Li, Wei and Cavalcanti, Ana and Timmis, Jon and Woodcock, Jim},
+	year         = 2019,
+	month        = {oct},
+	journal      = {Software \& Systems Modeling},
+	volume       = 18,
+	number       = 5,
+	pages        = {3097--3149},
+	doi          = {10.1007/s10270-018-00710-z},
+	issn         = {1619-1374},
+	urldate      = {2024-12-10},
+	abstract     = {Robots are becoming ubiquitous:~from vacuum cleaners to driverless cars, there is a wide variety of applications, many with potential safety hazards. The work presented in this paper proposes a set of constructs suitable for both modelling robotic applications and supporting verification via model checking and theorem proving. Our goal is to support roboticists in writing models and applying modern verification techniques using a language familiar to them. To that end, we present RoboChart, a domain-specific modelling language based on UML, but with a restricted set of constructs to enable a simplified semantics and automated reasoning. We present the RoboChart metamodel, its well-formedness rules, and its process-algebraic semantics. We discuss verification based on these foundations using an implementation of RoboChart and its semantics as a set of Eclipse plug-ins called RoboTool.},
+	langid       = {english},
+	keywords     = {CSP,Domain-specific language for robotics,Formal semantics,Model checking,Process algebra,Selected - New,State machines,Timed properties},
+	
+}
+@article{neghinaearly-stage2020,
+	title        = {Early-Stage Analysis of Cyber-Physical Production Systems through Collaborative Modelling},
+	author       = {Neghina, Mihai and Zamfirescu, Constantin-Bala and Pierce, Ken},
+	year         = 2020,
+	month        = {may},
+	journal      = {Software and Systems Modeling},
+	volume       = 19,
+	number       = 3,
+	pages        = {581--600},
+	doi          = {10.1007/s10270-019-00753-w},
+	issn         = {1619-1374},
+	urldate      = {2024-12-10},
+	abstract     = {This paper demonstrates the flexible methodology of modelling cyber-physical systems (CPSs) using the INTO-CPS technology through co-simulation based on Functional Mock-up Units (FMUs). It explores a novel method with two main co-simulation phases: homogeneous and heterogeneous. In the first phase, high-level, abstract FMUs are produced for all subsystems using a single discrete-event formalism (the VDM-RT language and Overture tool). This approach permits early co-simulation of system-level behaviours and serves as a basis for dialogue between subsystem teams and agreement on interfaces. During the second phase, model refinements of subsystems are gradually introduced, using various simulation tools capable of exporting FMUs. This heterogeneous phase permits high-fidelity models of all subsystems to be produced in appropriate formalisms. This paper describes the use of this methodology to develop a USB stick production line, representing a smart system of systems. The experiments are performed under the assumption that the orders are received in a Gaussian or Uniform distribution. The focus is on the homogeneous co-simulation phase, for which the method demonstrates two important roles: first, the homogeneous phase identifies the right interaction protocols (signals) among the various subsystems, and second, the conceptual (system-level) parameters identified before the heterogeneous co-simulation phase reduce the huge size of the design space and create stable constraints, later reflected in the physical implementation.},
+	langid       = {english},
+	keywords     = {Co-simulation,Cyber-physical production systems,Design space exploration,Homogeneous and heterogeneous modelling,Selected - New},
+	
+}
+@inproceedings{nordmannmodeling2015,
+	title        = {Modeling of Movement Control Architectures Based on Motion Primitives Using Domain-Specific Languages},
+	author       = {Nordmann, Arne and Wrede, Sebastian and Steil, Jochen},
+	year         = 2015,
+	month        = {may},
+	booktitle    = {2015 IEEE International Conference on Robotics and Automation (ICRA)},
+	pages        = {5032--5039},
+	doi          = {10.1109/ICRA.2015.7139899},
+	issn         = {1050-4729},
+	urldate      = {2024-12-19},
+	abstract     = {This paper introduces a model-driven approach for engineering complex movement control architectures based on motion primitives, which in recent years have been a central development towards adaptive and flexible control of complex and compliant robots. We consider rich motor skills realized through the composition of motion primitives as our domain. In this domain we analyze the control architectures of representative example systems to identify common abstractions. It turns out that the introduced notion of motion primitives implemented as dynamical systems with machine learning capabilities, provide the computational building block for a large class of such control architectures. Building on the identified concepts, we introduce domain-specific languages that allow the compact specification of movement control architectures based on motion primitives and their coordination respectively. Using a proper tool chain, we show how to employ this model-driven approach in a case study for the real world example of automatic laundry grasping with the KUKA LWR-IV, where executable source-code is automatically generated from the domain-specific language specification.},
+	keywords     = {Adaptation models,Adaptive systems,Computer architecture,DSL,Motion control,Robot kinematics,Selected - New},
+	
+}
+@inproceedings{paredistowards2022,
+	title        = {Towards a Digital Z Framework Based on a Family of Architectures and a Virtual Knowledge Graph},
+	author       = {Paredis, Randy and Vangheluwe, Hans},
+	year         = 2022,
+	booktitle    = {Proceedings of the 25th International Conference on Model Driven Engineering Languages and Systems: Companion Proceedings},
+	publisher    = {Association for Computing Machinery},
+	address      = {New York, NY, USA},
+	series       = {MODELS '22},
+	pages        = {491--496},
+	doi          = {10.1145/3550356.3561543},
+	isbn         = {978-1-4503-9467-3},
+	abstract     = {The purpose of systems engineering is to, often collaboratively and following complex workflows, analyse, design, optimize, operate, and evolve complex, cyber-physical systems. This paper proposes a vision of a general framework for the design, deployment and operation of Digital Z (where Z can be model, shadow, twin, passport, avatar...). Different Digital Zs are used, often in combination, for various purposes during systems engineering. That is why we propose a family of architectures for different Digital Zs. Each Digital Z architecture is constructed based on the engineers' goals. These goals can always be reduced to the observation, satisfaction, or optimization of some Properties of Interest (PoIs). Example PoIs are safety, and average energy consumption. We propose to have one Digital Z architecture per PoI. The different Digital Zs may be combined into an ecosystem. More variability is introduced when we zoom into the deployment of Digital Zs. Common choices for network communication such as DDS and MQTT each have their own strengths and weaknesses which must be taken into account when trying to satisfy non-functional properties such as meeting real-time deadlines. We also introduce the Modelverse, a Virtual (Federated) Knowledge Graph (VKG). It is used as a source of knowledge to aid in the construction of "experiments" which answer user's questions about PoIs. These, possibly concurrent, experiments are in essence particular Digital Z ecosystems/architectures. When the experiments provide answers, these are added to the VKG knowledge base in the form (question, experiment architecture, answer). The glue between the above is a template workflow. We sketch the above concepts by means of concrete examples and compare them with existing Digital Z definitions and frameworks such as the "5D model".},
+	keywords     = {digital twins,Selected - Profile,system architectures,system engineering},
+	
+}
+@misc{buttingmodeling2016,
+	title        = {Modeling Reusable, Platform-Independent Robot Assembly Processes},
+	author       = {Butting, Arvid and Rumpe, Bernhard and Schulze, Christoph and Thomas, Ulrike and Wortmann, Andreas},
+	year         = 2016,
+	month        = {jan},
+	publisher    = {arXiv},
+	number       = {arXiv:1601.02452},
+	doi          = {10.48550/arXiv.1601.02452},
+	urldate      = {2025-03-03},
+	eprint       = {1601.02452},
+	primaryclass = {cs},
+	abstract     = {Smart factories that allow flexible production of highly individualized goods require flexible robots, usable in efficient assembly lines. Compliant robots can work safely in shared environments with domain experts, who have to program such robots easily for arbitrary tasks. We propose a new domain-specific language and toolchain for robot assembly tasks for compliant manipulators. With the LightRocks toolchain, assembly tasks are modeled on different levels of abstraction, allowing a separation of concerns between domain experts and robotics experts: externally provided, platform-independent assembly plans are instantiated by the domain experts using models of processes and tasks. Tasks are comprised of skills, which combine platform-specific action models provided by robotics experts. Thereby it supports a flexible production and re-use of modeling artifacts for various assembly processes.},
+	archiveprefix = {arXiv},
+	langid       = {english},
+	keywords     = {Computer Science - Software Engineering},
+	
+}
+@misc{lotzmodeling2016,
+	title        = {Modeling Non-Functional Application Domain Constraints for Component-Based Robotics Software Systems},
+	author       = {Lotz, Alex and Hamann, Arne and Lütkebohle, Ingo and Stampfer, Dennis and Lutz, Matthias and Schlegel, Christian},
+	year         = 2016,
+	month        = {jan},
+	publisher    = {arXiv},
+	number       = {arXiv:1601.02379},
+	doi          = {10.48550/arXiv.1601.02379},
+	urldate      = {2025-03-03},
+	eprint       = {1601.02379},
+	primaryclass = {cs},
+	abstract     = {Service robots are complex, heterogeneous, software intensive systems built from components. Recent robotics research trends mainly address isolated capabilities on functional level. Non-functional properties, such as responsiveness or deterministic behavior, are addressed only in isolation (if at all). We argue that handling such non-functional properties on system level is a crucial next step. We claim that precise control over application-specific, dynamic execution and interaction behavior of functional components -- i.e. clear computation and communication semantics on model level without hidden codedefined parts -- is a key ingredient thereto.},
+	archiveprefix = {arXiv},
+	langid       = {english},
+	keywords     = {Computer Science - Robotics,Computer Science - Software Engineering},
+	
+}
+@misc{zandermodel-driven2016,
+	title        = {A Model-Driven Engineering Approach for ROS Using Ontological Semantics},
+	author       = {Zander, Stefan and Heppner, Georg and Neugschwandtner, Georg and Awad, Ramez and Essinger, Marc and Ahmed, Nadia},
+	year         = 2016,
+	month        = {jan},
+	publisher    = {arXiv},
+	number       = {arXiv:1601.03998},
+	doi          = {10.48550/arXiv.1601.03998},
+	urldate      = {2025-03-03},
+	eprint       = {1601.03998},
+	primaryclass = {cs},
+	abstract     = {This paper presents a novel ontology-driven software engineering approach for the development of industrial robotics control software. It introduces the ReApp architecture that synthesizes model-driven engineering with semantic technologies to facilitate the development and reuse of ROS-based components and applications. In ReApp, we show how different ontological classification systems for hardware, software, and capabilities help developers in discovering suitable software components for their tasks and in applying them correctly. The proposed model-driven tooling enables developers to work at higher abstraction levels and fosters automatic code generation. It is underpinned by ontologies to minimize discontinuities in the development workflow, with an integrated development environment presenting a seamless interface to the user. First results show the viability and synergy of the selected approach when searching for or developing software with reuse in mind.},
+	archiveprefix = {arXiv},
+	langid       = {english},
+	keywords     = {Computer Science - Robotics,Computer Science - Software Engineering},
+	
+}
+@article{pauliusfunctional2016,
+	title        = {Functional Object-Oriented Network for Manipulation Learning},
+	author       = {Paulius, D. and Huang, Y. and Milton, R. and Buchanan, W. D. and Sam, J. and Sun, Y.},
+	year         = 2016,
+	journal      = {2016 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+	publisher    = {IEEE},
+	pages        = {2655--2662},
+	doi          = {10.1109/IROS.2016.7759413},
+	abstract     = {This paper presents a novel structured knowledge representation called the functional object-oriented network (FOON) to model the connectivity of the functional-related objects and their motions in manipulation tasks. The graphical model FOON is learned by observing object state change and human manipulations with the objects. Using a well-trained FOON, robots can decipher a task goal, seek the correct objects at the desired states on which to operate, and generate a sequence of proper manipulation motions. The paper describes FOON's structure and an approach to form a universal FOON with extracted knowledge from online instructional videos. A graph retrieval approach is presented to generate manipulation motion sequences from the FOON to achieve a desired goal, demonstrating the flexibility of FOON in creating a novel and adaptive means of solving a problem using knowledge gathered from multiple sources. The results are demonstrated in a simulated environment to illustrate the motion sequences generated from the FOON to carry out the desired tasks.},
+	
+}
+@article{degrooteintegrating2016,
+	title        = {Integrating Realistic Simulation Engines within the MORSE Framework},
+	author       = {Degroote, A. and Koch, P. and Lacroix, S.},
+	year         = 2016,
+	journal      = {2016 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+	publisher    = {IEEE},
+	pages        = {2723--2728},
+	doi          = {10.1109/IROS.2016.7759423},
+	abstract     = {The complexity of robotics comes from the tight interactions between hardware, complex softwares, and environments. While real world experience is the only way to assess the efficiency and robustness of a robotics system, simulations help to pave the way to actual experiments. But an overall robotics system requires simulations at a level of realism which no holistic simulator can provide, given the wide spectrum of disciplines and physical processes involved. This paper presents a way to integrate various simulators, in a distributed, scalable and repeatable way, to benefit from their different advantages and get the best fitted and accurate simulation for a given robotics system. It depicts how the MORSE open-source robotics simulator is adapted to comply with the High Level Architecture standard, thus allowing the reuse of numerous dedicated realistic simulators. Two examples of the integration of simulators are provided.},
+	
+}
+@article{chitnisintegrating2018,
+	title        = {Integrating Human-Provided Information into Belief State Representation Using Dynamic Factorization},
+	author       = {Chitnis, R. and Kaelbling, L. P. and {Lozano-Pérez}, T.},
+	year         = 2018,
+	journal      = {2018 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+	publisher    = {IEEE},
+	pages        = {3551--3558},
+	doi          = {10.1109/IROS.2018.8594468},
+	abstract     = {In partially observed environments, it can be useful for a human to provide the robot with declarative information that represents probabilistic relational constraints on properties of objects in the world, augmenting the robot's sensory observations. For instance, a robot tasked with a search-and-rescue mission may be informed by the human that two victims are probably in the same room. An important question arises: how should we represent the robot's internal knowledge so that this information is correctly processed and combined with raw sensory information? In this paper, we provide an efficient belief state representation that dynamically selects an appropriate factoring, combining aspects of the belief when they are correlated through information and separating them when they are not. This strategy works in open domains, in which the set of possible objects is not known in advance, and provides significant improvements in inference time over a static factoring, leading to more efficient planning for complex partially observed tasks. We validate our approach experimentally in two open-domain planning problems: a 2D discrete gridworld task and a 3D continuous cooking task. A supplementary video can be found at http://tinyurl.com/chitnis-iros-18.},
+	
+}
+@article{dattaformalizing2016,
+	title        = {Formalizing the Specifications of a Domain-Specific Language for Authoring Behaviour of Personal Service Robots},
+	author       = {Datta, C. and Broadbent, E. and MacDonald, B. A.},
+	year         = 2016,
+	journal      = {2016 IEEE International Conference on Simulation, Modeling, and Programming for Autonomous Robots (SIMPAR)},
+	publisher    = {IEEE},
+	pages        = {98--103},
+	doi          = {10.1109/SIMPAR.2016.7862382},
+	abstract     = {Programming tasks on interactive personal service robots is challenging. Until various component technologies for fully autonomous systems are matured for field deployment, robots need to be tasked and programmed by humans. This research aims at developing a higher layer of abstraction for programming personal service robots with applications to healthcare scenarios. The robots were used in a real world deployment scenario at an Aged Care Facility. The goal is to enable roboticists and non-programmer domain experts to co-develop robot service scenarios in real world environments and simulate execution of the behaviour without running the entire application on the robot. A domain-specific programming language (DSL) and a visual programming environment (Ro-boStudio) were developed to meet this goal. The key objective of this paper is to formalize the language specification for the DSL. It is referred to as Robot Behaviour Description Modeling Language (RBDML). The graphical meta-model for RBDML consists of two interwoven modelling languages. This formalisation allows the key concepts of the domain to be captured in a formal meta-model and keep it independent from the target language. Examples presented will give the reader a walk-through of the language definition process along with the modeling notations, syntax, semantics and validation rules. The results demonstrate the accuracy of code-generation compared with hand written code for equivalent robot service applications.},
+	
+}
+@article{lotzcombining2016,
+	title        = {Combining Robotics Component-Based Model-Driven Development with a Model-Based Performance Analysis},
+	author       = {Lotz, A. and Hamann, A. and Lange, R. and Heinzemann, C. and Staschulat, J. and Kesel, V. and Stampfer, D. and Lutz, M. and Schlegel, C.},
+	year         = 2016,
+	journal      = {2016 IEEE International Conference on Simulation, Modeling, and Programming for Autonomous Robots (SIMPAR)},
+	publisher    = {IEEE},
+	pages        = {170--176},
+	doi          = {10.1109/SIMPAR.2016.7862392},
+	abstract     = {Real-time properties such as reaction times play a safety-critical role for service robot applications. Current robotic software frameworks and middlewares, however, abstract from the underlying executing platform and execution management of the operating system thereby hiding relevant timing information. In other domains, such as automotive, model-based timing analysis is used early in the development process to analyze timing properties of the system. These approaches are not yet common in the service robotics domain. In this paper, we extend a model-driven development approach for robotic systems and enhance the system-configuration step to include a novel performance view that enables model-based timing analysis for robotic applications. Our evaluation shows that the performance analysis reasonably represents the real robot's run-time performance.},
+	
+}
+@article{zhanggraph-based2020,
+	title        = {Graph-Based Hierarchical Knowledge Representation for Robot Task Transfer from Virtual to Physical World},
+	author       = {Zhang, Z. and Zhu, Y. and Zhu, S. -C.},
+	year         = 2020,
+	journal      = {2020 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+	publisher    = {IEEE},
+	pages        = {11139--11145},
+	doi          = {10.1109/IROS45743.2020.9340843},
+	abstract     = {We study the hierarchical knowledge transfer problem using a cloth-folding task, wherein the agent is first given a set of human demonstrations in the virtual world using an Oculus Headset, and later transferred and validated on a physical Baxter robot. We argue that such an intricate robot task transfer across different embodiments is only realizable if an abstract and hierarchical knowledge representation is formed to facilitate the process, in contrast to prior literature of sim2real in a reinforcement learning setting. Specifically, the knowledge in both the virtual and physical worlds are measured by information entropy built on top of a graph-based representation, so that the problem of task transfer becomes the minimization of the relative entropy between the two worlds. An And-Or-Graph (AOG) is introduced to represent the knowledge, induced from the human demonstrations performed across six virtual scenarios inside the Virtual Reality (VR). During the transfer, the success of a physical Baxter robot platform across all six tasks demonstrates the efficacy of the graph-based hierarchical knowledge representation.},
+	
+}
+@article{wangautonomous2024,
+	title        = {Autonomous Behavior Planning for Humanoid Loco-Manipulation through Grounded Language Model},
+	author       = {Wang, J. and Laurenzi, A. and Tsagarakis, N.},
+	year         = 2024,
+	journal      = {2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+	publisher    = {IEEE},
+	pages        = {10856--10863},
+	doi          = {10.1109/IROS58592.2024.10802344},
+	abstract     = {Enabling humanoid robots to perform autonomously loco-manipulation in unstructured environments is crucial and highly challenging for achieving embodied intelligence. This involves robots being able to plan their actions and behaviors in long-horizon tasks while using multi-modality to perceive deviations between task execution and high-level planning. Recently, large language models (LLMs) have demonstrated powerful planning and reasoning capabilities for comprehension and processing of semantic information through robot control tasks, as well as the usability of analytical judgment and decision-making for multi-modal inputs. To leverage the power of LLMs towards humanoid loco-manipulation, we propose a novel language-model based framework that enables robots to autonomously plan behaviors and low-level execution under given textual instructions, while observing and correcting failures that may occur during task execution. To systematically evaluate this framework in grounding LLMs, we created the robot 'action' and 'sensing' behavior library for task planning, and conducted mobile manipulation tasks and experiments in both simulated and real environments using the CENTAURO robot, and verified the effectiveness and application of this approach in robotic tasks with autonomous behavioral planning. Video: https://youtu.be/mmnaxthEX34},
+	
+}
+@misc{zhangtowards2017,
+	title        = {Towards An Architecture-Centric Approach to Manage Variability of Cloud Robotics},
+	author       = {Zhang, Lei and Huaxi and Zhang and Fang, Zheng and Xiang, Xianbo and Huchard, Marianne and Zapata, Rene},
+	year         = 2017,
+	month        = {jan},
+	publisher    = {arXiv},
+	number       = {arXiv:1701.03608},
+	doi          = {10.48550/arXiv.1701.03608},
+	urldate      = {2025-03-03},
+	eprint       = {1701.03608},
+	primaryclass = {cs},
+	abstract     = {Cloud robotics is a field of robotics that attempts to invoke Cloud technologies such as Cloud computing, Cloud storage, and other Internet technologies centered around the benefits of converged infrastructure and shared services for robotics. In a few short years, Cloud robotics as a newly emerged field has already received much research and industrial attention. The use of the Cloud for robotics and automation brings some potential benefits largely ameliorating the performance of robotic systems. However, there are also some challenges. First of all, from the viewpoint of architecture, how to model and describe the architectures of Cloud robotic systems? How to manage the variability of Cloud robotic systems? How to maximize the reuse of their architectures? In this paper, we present an architecture approach to easily design and understand Cloud robotic systems and manage their variability.},
+	archiveprefix = {arXiv},
+	langid       = {english},
+	keywords     = {Computer Science - Robotics},
+	
+}
+@inproceedings{predoaiatree-based2024,
+	title        = {Tree-Based versus Hybrid Graphical-Textual Model Editors: An Empirical Study of Testing Specifications},
+	author       = {Predoaia, Ionut and Harbin, James and Gerasimou, Simos and Vasiliou, Christina and Kolovos, Dimitris and {García-Domínguez}, Antonio},
+	year         = 2024,
+	booktitle    = {Proceedings of the ACM/IEEE 27th International Conference on Model Driven Engineering Languages and Systems},
+	publisher    = {Association for Computing Machinery},
+	address      = {New York, NY, USA},
+	series       = {MODELS '24},
+	pages        = {80--91},
+	doi          = {10.1145/3640310.3674102},
+	isbn         = {979-8-4007-0504-5},
+	abstract     = {Tree-based model editors and hybrid graphical-textual model editors have advantages and limitations when editing domain models. Data is displayed hierarchically in tree-based model editors, whereas hybrid graphical-textual model editors capture high-level domain concepts graphically and low-level domain details textually. We conducted an empirical user study with 22 participants to evaluate the implicit assumption of system modellers that hybrid notations are superior, and to investigate the tradeoffs between the default EMF-based tree model editor and a Sirius/Xtext-based hybrid model editor. The results of the user study indicate that users largely prefer the hybrid editor and are more confident with hybrid notations for understanding the meaning of conditions. Furthermore, we found that the tree editor provided superior performance for analysing ordered lists of model elements, whereas activities requiring the comprehension or modelling of complex conditions were carried out faster through the hybrid editor.},
+	keywords     = {Empirical Study,Fuzz Testing,Hybrid Notations,Model Editors,Selected - Profile},
+	
+}
+@inproceedings{protinpractical2024,
+	title        = {Practical Design and Implementation of an Augmented Reality Based Digital Twin},
+	author       = {Protin, Lionel and {Aggoune-Mtalaa}, Wassila and Kavka, Carlos},
+	year         = 2024,
+	booktitle    = {Proceedings of the ACM/IEEE 27th International Conference on Model Driven Engineering Languages and Systems},
+	publisher    = {Association for Computing Machinery},
+	address      = {New York, NY, USA},
+	series       = {MODELS Companion '24},
+	pages        = {459--463},
+	doi          = {10.1145/3652620.3688260},
+	isbn         = {979-8-4007-0622-6},
+	abstract     = {This paper presents a practical example of design and implementation of an augmented reality based digital twin of moving wheeled robots in an indoor environment. The architecture developed is based on the RAMI (Reference Architectural Model Industry 4.0) framework and integrates both the physical and the digital twins, allowing continuous data exchange and real-time feedback loops between the two twins. From the physical twin perspective, the use of augmented reality (AR) headsets and position sensors enables to track the movement of the wheeled robots. The interest of the chosen architecture is a seamless communication of the decision and user interfacing elements including the AR headsets and the fulfilment layers of the digital twin. The current developed modules are deployed at a laboratory scale. The perspective of this work is an upscale to larger rooms and more industrial robots.},
+	keywords     = {augmented reality,digital twin,low code,modular and extensible architecture,Selected - New},
+	
+}
+@article{rabisermulti-purpose2018,
+	title        = {Multi-Purpose, Multi-Level Feature Modeling of Large-Scale Industrial Software Systems},
+	author       = {Rabiser, Daniela and Prähofer, Herbert and Grünbacher, Paul and Petruzelka, Michael and Eder, Klaus and Angerer, Florian and Kromoser, Mario and Grimmer, Andreas},
+	year         = 2018,
+	month        = {jul},
+	journal      = {Software \& Systems Modeling},
+	volume       = 17,
+	number       = 3,
+	pages        = {913--938},
+	doi          = {10.1007/s10270-016-0564-7},
+	issn         = {1619-1374},
+	urldate      = {2024-12-10},
+	abstract     = {Feature models are frequently used to capture the knowledge about configurable software systems and product lines. However, feature modeling of large-scale systems is challenging as models are needed for diverse purposes. For instance, feature models can be used to reflect the perspectives of product management, technical solution architecture, or product configuration. Furthermore, models are required at different levels of granularity. Although numerous approaches and tools are available, it remains hard to define the purpose, scope, and granularity of feature models. This paper first reports results and experiences of an exploratory case study on developing feature models for two large-scale industrial automation software systems. We report results on the characteristics and modularity of the feature models, including metrics about model dependencies. Based on the findings from the study, we developed FORCE, a modeling language, and tool environment that extends an existing feature modeling approach to support models for different purposes and at multiple levels, including mappings to the code base. We demonstrate the expressiveness and extensibility of our approach by applying it to the well-known Pick and Place Unit example and an injection molding subsystem of an industrial product line. We further show how our approach supports consistency between different feature models. Our results and experiences show that considering the purpose and level of features is useful for modeling large-scale systems and that modeling dependencies between feature models is essential for developing a system-wide perspective.},
+	langid       = {english},
+	keywords     = {Case study,Feature modeling,Large-scale software systems,Selected - New},
+	
+}
+@inproceedings{rajaextending2025,
+	title        = {Extending Goal Models with~Execution Orders: An Investigation of~the~Impact on~Comprehensibility},
+	shorttitle   = {Extending Goal Models with~Execution Orders},
+	author       = {Raja, Jeshwitha Jesus and Raju, Akhila Vissom and Brings, Jennifer and Daun, Marian},
+	year         = 2025,
+	booktitle    = {Advances in Conceptual Modeling},
+	publisher    = {Springer Nature Switzerland},
+	address      = {Cham},
+	pages        = {219--228},
+	doi          = {10.1007/978-3-031-75599-6_17},
+	isbn         = {978-3-031-75599-6},
+	editor       = {Saeki, Motoshi and Wong, Leah and Araujo, João and Ayora, Clara and Bernasconi, Anna and Buffa, Matteo and Castano, Silvana and Fettke, Peter and Fill, Hans-Georg and García S., Alberto and Goulão, Miguel and Griffo, Cristine and Jung, Jin-Taek and Köpke, Julius and Marín, Beatriz and Montanelli, Stefano and Rohrer, Edelweis and Román, José F. Reyes},
+	abstract     = {Goal models are used in early development phases to specify the system under development and conduct early feasibility analyses. Therefore, goal models show an abstract representation of the system not detailing the system behavior, which is typically specified in later stages. In the development of robotic production systems, the execution order of different tasks is important and must be considered when deciding upon feasibility of approaches and weighing different solution alternatives. The order of production steps can be easily integrated into goal models, as this can be behavior specified on a very high and abstract level. However, integrating more and more complexity into a goal model bears the risk of reducing its comprehensibility. In this paper, we report a controlled experiment investigating the effect the introduction of process step execution orders within goal models of robotic production systems has on the models' comprehensibility. Results show that the introduction of execution orders can even increase comprehensibility.},
+	langid       = {english},
+	keywords     = {Selected - Profile},
+	
+}
+@article{schnigiot2020,
+	title        = {IoT Meets BPM: A Bidirectional Communication Architecture for IoT-aware Process Execution},
+	shorttitle   = {IoT Meets BPM},
+	author       = {Schönig, Stefan and Ackermann, Lars and Jablonski, Stefan and Ermer, Andreas},
+	year         = 2020,
+	month        = {nov},
+	journal      = {Software and Systems Modeling},
+	volume       = 19,
+	number       = 6,
+	pages        = {1443--1459},
+	doi          = {10.1007/s10270-020-00785-7},
+	issn         = {1619-1374},
+	urldate      = {2024-12-10},
+	abstract     = {Business processes are frequently executed within application systems that involve humans, computer systems as well as objects of the Internet of Things (IoT). Nevertheless, the usage of IoT technology for system supported process execution is still constrained by the absence of a common system architecture that manages the communication between both worlds. In this paper, we introduce an integrated approach for IoT-aware business process execution that exploits IoT for BPM by providing IoT data in a process-compatible way, providing an IoT data provenance framework, considering IoT data for interaction in a pre-defined process model, and providing wearable user interfaces with context-specific IoT data provision. The approach has been implemented on top of contemporary BPM modeling concepts and system technology. The introduced technique has evaluated extensively in different use cases in industry.},
+	langid       = {english},
+	keywords     = {Internet of Things,Process Execution,Selected - Profile,Wearables},
+	
+}
+@inproceedings{sennmulti-paradigm2022,
+	title        = {Multi-Paradigm Modeling for Early Analysis of ROS-based Robotic Applications Using a Library of AADL Models},
+	author       = {Senn, Eric and Bourdon, Lucie W. J. and Blouin, Dominique},
+	year         = 2022,
+	booktitle    = {Proceedings of the 25th International Conference on Model Driven Engineering Languages and Systems: Companion Proceedings},
+	publisher    = {Association for Computing Machinery},
+	address      = {New York, NY, USA},
+	series       = {MODELS '22},
+	pages        = {677--683},
+	doi          = {10.1145/3550356.3563129},
+	isbn         = {978-1-4503-9467-3},
+	abstract     = {ROS, the Robot Operating System, is a middleware that eases the programming of robotic applications significantly, bringing standard communication and synchronization mechanisms to a wide variety of operating systems and computers or embedded computer boards. However, a robotic application is a complex set of many services, with many relations between them, and multiple choices have to be made regarding the software and the hardware architectures. To rely on a formal representation of those two, from which early analysis can be performed, is extremely beneficial since it allows detection of design errors early in the process. This is what we present in this paper. Our approach is based on the Architecture Analysis and Design Language (AADL) and on a set of AADL models to represent both the application and the robot, including its embedded computers and its many devices. Those models are gathered into an open source AADL library from which ROS developers can largely benefit.},
+	keywords     = {AADL,ROS,Selected - Profile},
+	
+}
+@inproceedings{somersreliable2022,
+	title        = {Reliable Counterparts: Efficiently Testing Causal Relationships in Digital Twins},
+	author       = {Somers, Richard J. and Clark, Andrew G. and Walkinshaw, Neil and Hierons, Robert M.},
+	year         = 2022,
+	booktitle    = {Proceedings of the 25th International Conference on Model Driven Engineering Languages and Systems: Companion Proceedings},
+	publisher    = {Association for Computing Machinery},
+	address      = {New York, NY, USA},
+	series       = {MODELS '22},
+	pages        = {468--472},
+	doi          = {10.1145/3550356.3561589},
+	isbn         = {978-1-4503-9467-3},
+	abstract     = {The lack of testability of digital twins poses several difficulties when developing reliable systems. Intricate models complicate the definition of comprehensive testing criteria, and physical couplings make obtaining test data an arduous task. To alleviate these challenges, we explore the use of causal inference based testing and propose a technique to allow for correct behaviour of digital twins to be captured in causal diagrams, which are then tested with an efficient data set through the use of counterfactuals. We explore a motivating example of a robotic arm to show how this technique can confirm known causal relationships in a system, and even uncover a fault in the system which caused dangerous behaviour. Our technique localised this erroneous behaviour to a single causal relationship between two variables. Having shown this technique works with a case study, we explore its limitations and the challenges when approaching other industrial applications.},
+	keywords     = {causal inference,cyber-physical system,digital twin,fault localisation,Selected - New,testing},
+	
+}
+@inproceedings{uriagerekadesign-time2021,
+	title        = {Design-Time Safety Assessment of Robotic Systems Using Fault Injection Simulation in a Model-Driven Approach},
+	author       = {Uriagereka, Garazi Juez and Amparan, Estibaliz and Martinez, Cristina Martinez and Martinez, Jabier and Ibanez, Aurelien and Morelli, Matteo and Radermacher, Ansgar and Espinoza, Huascar},
+	year         = 2021,
+	booktitle    = {Proceedings of the 22nd International Conference on Model Driven Engineering Languages and Systems},
+	publisher    = {IEEE Press},
+	address      = {Munich, Germany},
+	series       = {MODELS '19},
+	pages        = {577--586},
+	doi          = {10.1109/MODELS-C.2019.00088},
+	isbn         = {978-1-7281-5125-0},
+	abstract     = {The rapid advancement of autonomy in robotic systems together with the increasing interaction with humans in shared workspaces (e.g. collaborative robots), raises pressing concerns about system safety. In recent years, the need of model-driven approaches for safety analysis during the design stage has gained a lot of attention. In this context, simulation-based fault injection combined with a virtual robot is a promising practice to complement traditional safety analysis. Fault injection is used to identify the potential safety hazard scenarios and to evaluate the controller's robustness to certain faults. Besides, it enables a quantitative assessment w.r.t. other techniques that only give qualitative hints, such as FMEA. Thus, it facilitates the refinement of safety requirements and the conception of concrete mitigation actions. This paper presents a tool-supported approach that leverages models and simulation-assisted fault injection to assess safety and reliability of robotic systems in the early phases of design. The feasibility of this method is demonstrated by applying it to the design of a real-time cartesian impedance control system in torque mode as a use case scenario.},
+	keywords     = {fault injection,robmosys,robotic systems,safety,Selected - New},
+	
+}
+@inproceedings{wiesmayrmodeling2024,
+	title        = {Modeling Service Choreographies and Collaborative Tasks for Autonomous Mixed-Fleet Systems},
+	author       = {Wiesmayr, Bianca and Zoitl, Alois and Hästbacka, David},
+	year         = 2024,
+	booktitle    = {Proceedings of the ACM/IEEE 27th International Conference on Model Driven Engineering Languages and Systems},
+	publisher    = {Association for Computing Machinery},
+	address      = {New York, NY, USA},
+	series       = {MODELS Companion '24},
+	pages        = {234--244},
+	doi          = {10.1145/3652620.3686244},
+	isbn         = {979-8-4007-0622-6},
+	abstract     = {Complex processes require the cooperation of a variety of subsystems, such as robots, autonomous vehicles, and human-operated devices. These so-called mixed-fleet systems are found in logistics and production use cases, which also demand a high flexibility. Hence, the choreography that orchestrates the involved systems must be adaptable and reconfigurable. Enabling to add or remove subsystems flexibly during runtime requires a strong decoupling, which is found in multi-agent systems. In this paper, we explore a model-driven engineering process for service choreographies of flexible, heterogeneous, and autonomous mixed-fleet systems. Each complex process is decomposed into services and tasks, which are flexibly assigned to resources. The resulting layered service-oriented architecture is realized as an event-based system. We define requirements for modeling services, tasks, and events and evaluate different modeling language based on their applicability for each layer, i.e., BPMN, SysML/UML, and IEC 61499. We demonstrate and evaluate our architecture using a logistics use case scenario. The results show that these languages are suitable candidates for modeling event-based process models and that the diagrams can be used to capture service choreography models for decentralized systems. Future work will investigate how these models can be validated comprehensively and used for system implementation.},
+	keywords     = {event-based architecture,model-driven engineering,Selected - Profile,services},
+	
+}
+@inproceedings{woitschindustrial2020,
+	title        = {Industrial Digital Environments in Action: The OMiLAB Innovation Corner},
+	shorttitle   = {Industrial Digital Environments in Action},
+	author       = {Woitsch, Robert},
+	year         = 2020,
+	booktitle    = {The Practice of Enterprise Modeling},
+	publisher    = {Springer International Publishing},
+	address      = {Cham},
+	pages        = {8--22},
+	doi          = {10.1007/978-3-030-63479-7_2},
+	isbn         = {978-3-030-63479-7},
+	editor       = {Grabis, J{\=a}nis and Bork, Dominik},
+	abstract     = {The digital transformation is a global mega trend that is triggered by the evolution of digital technology, that has the potential for every organisation to either optimize their current business via a digital innovation or by transforming the business via digital disruption. The challenge for every organisation is therefore to select and personalise the appropriate digital innovation. There is a plethora of methods and assessment frameworks, here we introduce the OMiLAB Innovation Corner that assists in (1) creating new business, (2) design the organisational model and (3) engineer proof-of-concept prototypes as a ''communication media''. The unique value proposition of OMiLAB Innovation Corner is the model-based foundation that supports decision makers in key phases of the innovation. First, the creation of new business models by providing digital design thinking tools is assisted. Second, the design of the digital organisation by providing extended modelling capabilities is supported. Third, a proof-of-concept engineering providing robots and sensors is enabled. We share our practical exeriences by introducing (a) how new business models are created in the H2020 project Change2Twin to help manufacturing SMEs in their digital transformation, (b) how conceptual models are design in the H2020 project BIMERR to create digital twins of renovation processes and (d) how proof-of-concept engineering is performed in the FFG project complAI to analyse different robotic behaviour.},
+	langid       = {english},
+	keywords     = {Digital innovation in industry,Digital transformation,OMiLAB,Selected - New},
+	
+}
+@article{yeprobabilistic2022,
+	title        = {Probabilistic Modelling and Verification Using RoboChart and PRISM},
+	author       = {Ye, Kangfeng and Cavalcanti, Ana and Foster, Simon and Miyazawa, Alvaro and Woodcock, Jim},
+	year         = 2022,
+	month        = {apr},
+	journal      = {Software and Systems Modeling},
+	volume       = 21,
+	number       = 2,
+	pages        = {667--716},
+	doi          = {10.1007/s10270-021-00916-8},
+	issn         = {1619-1374},
+	urldate      = {2024-12-10},
+	abstract     = {RoboChart is a timed domain-specific language for robotics, distinctive in its support for automated verification by model checking and theorem proving. Since uncertainty is an essential part of robotic systems, we present here an extension to RoboChart to model uncertainty using probabilism. The extension enriches RoboChart state machines with probability through a new construct: probabilistic junctions as the source of transitions with a probability value. RoboChart has an accompanying tool, called RoboTool, for modelling and verification of functional and real-time behaviour. We present here also an automatic technique, implemented in RoboTool, to transform a RoboChart model into a PRISM model for verification. We have extended the property language of RoboTool so that probabilistic properties expressed in temporal logic can be written using controlled natural language.},
+	langid       = {english},
+	keywords     = {Domain-specific language for robotics,Formal semantics,Model transformation,PRISM,Probabilistic model checking,Selected - Profile,State machines},
+	
+}
+    `;
+    function loadBibTeX() {
+    const referencesList = document.getElementById("references");
+    referencesList.innerHTML = ""; // Clear previous data
+
+
+    // Split entries, keeping multiple lines intact
+    const entries = bibtexData.split(/@\w+\{/).filter(entry => entry.trim());
+    entries.forEach(entry => {
+      const bibObj = parseBibTeX(entry);
+      if (bibObj) {
+        referencesList.appendChild(createReferenceHTML(bibObj));
+      }
+    });
+  }
+
+  function parseBibTeX(entry) {
+    const bibObj = {};
+    const lines = entry.split("\n").map(line => line.trim()).filter(line => line);
+	// remove the last character which is a comma
+	lines[0] = lines[0].slice(0, -1);
+    bibObj.id = lines[0];   // e.g., tilleydronely2017
+
+    lines.slice(1).forEach(line => {
+        let match = line.match(/^(\w+)\s*=\s*\{(.+?)\},?$/);
+		if (match) {
+            bibObj[match[1].toLowerCase()] = match[2];
+        }
+    });
+
+    return bibObj;
+}
+  
+    function createReferenceHTML(bibObj) {
+      const li = document.createElement("li");
+	  // add class class reference 
+	  li.classList.add("reference");
+      li.id = bibObj.id;
+  
+      const authorText = bibObj.author ? `<b>${bibObj.author}</b>, ` : "";
+      const titleText = `<i>${bibObj.title}</i>`;
+      const bookText = bibObj.booktitle ? `, in <i>${bibObj.booktitle}</i>` : "";
+      const publisherText = bibObj.publisher ? `, ${bibObj.publisher}` : "";
+      const yearText = bibObj.year ? `, ${bibObj.year}` : "";
+      const doiText = bibObj.doi ? ` DOI: <a href="https://doi.org/${bibObj.doi}" target="_blank">${bibObj.doi}</a>.` : "";
+  
+      li.innerHTML = `${authorText} ${titleText} ${bookText} ${publisherText} ${yearText}.${doiText}`;
+  
+      return li;
+    }
+  
+  // Scroll to Top
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Show Back to Top Button
+  window.onscroll = function () {
+    document.querySelector(".back-to-top").style.display = 
+      window.scrollY > 300 ? "block" : "none";
+  };
+
+  // Filter References
+  function filterReferences() {
+    let filter = document.querySelector(".search-input").value.toLowerCase();
+    let items = document.querySelectorAll(".reference");
+    items.forEach(item => {
+      item.style.display = item.innerText.toLowerCase().includes(filter) ? "block" : "none";
+    });
+  }
+    function toggleTheme() {
+      document.body.classList.toggle("dark-mode");
+    }
+	  // Copy Citation to Clipboard
+	  function copyCitation(id) {
+    const text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text);
+    alert("Copied to clipboard!");
+  }
+
+  </script>
+</body>
+
+</html>
