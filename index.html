@@ -2,182 +2,714 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>References</title>
-    <style>
-        /* General Styles */
-        body {
-          font-family: 'Poppins', Arial, sans-serif;
-          background-color: #f4f7f9;
-          margin: 0;
-          padding: 2rem;
-          max-width: 900px;
-          margin: auto;
-          line-height: 1.8;
-          color: #333;
-          transition: background-color 0.3s, color 0.3s;
-        }
-    
-        /* Header */
-        h1 {
-          text-align: center;
-          font-size: 2rem;
-          color: #222;
-          margin-bottom: 1rem;
-          border-bottom: 3px solid #0073e6;
-          padding-bottom: 0.5rem;
-          display: inline-block;
-        }
-    
-        /* Search Bar */
-        .search-container {
-          text-align: center;
-          margin-bottom: 1.5rem;
-        }
-    
-        .search-input {
-          padding: 0.7rem;
-          width: 80%;
-          max-width: 500px;
-          border: 1px solid #bbb;
-          border-radius: 5px;
-          font-size: 1rem;
-        }
-    
-        /* Theme Toggle */
-        .theme-toggle {
-          text-align: right;
-          margin-bottom: 1rem;
-        }
-    
-        .theme-toggle button {
-          background: #0073e6;
-          color: white;
-          border: none;
-          padding: 0.6rem 1rem;
-          font-size: 1rem;
-          cursor: pointer;
-          border-radius: 5px;
-          transition: background 0.3s;
-        }
-    
-        .theme-toggle button:hover {
-          background: #005bb5;
-        }
-    
-        /* Reference List */
-        ol {
-          padding-left: 0;
-          counter-reset: reference-counter;
-        }
-    
-        /* Reference Item */
-        ol li {
-          background: white;
-          padding: 1.2rem;
-          border-radius: 8px;
-          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-          margin-bottom: 1.2rem;
-          list-style: none;
-          position: relative;
-          counter-increment: reference-counter;
-          transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        }
-    
-        /* Numbering */
-        ol li::before {
-          content: "[" counter(reference-counter) "] ";
-          font-weight: bold;
-          color: #0073e6;
-          font-size: 1.1rem;
-          margin-right: 5px;
-        }
-    
-        /* Hover Effect */
-        ol li:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-        }
-    
-        /* Copy Button */
-        .copy-btn {
-          background: #0073e6;
-          color: white;
-          border: none;
-          padding: 0.4rem 0.8rem;
-          font-size: 0.9rem;
-          cursor: pointer;
-          border-radius: 5px;
-          margin-left: 10px;
-          transition: background 0.3s;
-        }
-        
-        .copy-btn:hover {
-          background: #005bb5;
-        }
-    
-        /* Dark Mode */
-        body.dark-mode {
-          background-color: #222;
-          color: #f4f4f4;
-        }
-    
-        body.dark-mode li {
-          background: #333;
-        }
-    
-        body.dark-mode .theme-toggle button,
-        body.dark-mode .copy-btn {
-          background: #ffcc00;
-          color: #222;
-        }
+	<meta charset="UTF-8">
+	<title>References</title>
+	<style>
+/* Sticky Footer */
+.footer {
+    background-color: #0073e6;
+    color: white;
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 10px 15px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    border-top: 3px solid #005bb5;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
 
-        body.dark-mode h1 {
-            color: #f4f4f4;
-        }
-    
-        /* Responsive */
-        @media (max-width: 768px) {
-          body {
-            padding: 1rem;
-          }
-    
-          h1 {
-            font-size: 1.8rem;
-          }
-        }
-    </style>
+.footer-container {
+    max-width: 900px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer a {
+    color: #ffcc00;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.copyright {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+	    /* Wrapper for Scrollable Table */
+		.table-wrapper {
+        width: 100%;
+        overflow-x: auto; /* Enables horizontal scrolling */
+        /* border-radius: 8px; */
+        /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); */
+        /* background: white; */
+        /* padding: 10px; */
+    }
+
+    /* Table Styling */
+    .styled-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 1rem;
+        text-align: left;
+    }
+
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+    }
+
+    .styled-table th {
+        background-color: #0073e6;
+        color: white;
+        font-weight: bold;
+    }
+
+    .styled-table tbody tr:nth-child(even) {
+        background-color: #f4f7f9;
+    }
+
+    .styled-table tbody tr:hover {
+        background-color: #ddd;
+    }
+		/* Enhanced Tabs */
+		/* General Styles */
+		body {
+			font-family: 'Poppins', Arial, sans-serif;
+			background-color: #f4f7f9;
+			margin: 0;
+			padding: 2rem;
+			margin: auto;
+			line-height: 1.8;
+			color: #333;
+			transition: background-color 0.3s, color 0.3s;
+			padding-bottom: 40px;
+		}
+
+		/* Header */
+		h1 {
+			text-align: center;
+			font-size: 2rem;
+			color: #222;
+			margin-bottom: 1rem;
+			border-bottom: 3px solid #0073e6;
+			padding-bottom: 0.5rem;
+			display: inline-block;
+		}
+
+		/* Search Bar */
+		.search-container {
+			text-align: center;
+			margin-bottom: 1.5rem;
+		}
+
+		.search-input {
+			padding: 0.7rem;
+			width: 80%;
+			max-width: 500px;
+			border: 1px solid #bbb;
+			border-radius: 5px;
+			font-size: 1rem;
+		}
+
+		/* Theme Toggle */
+		.theme-toggle {
+			text-align: right;
+			margin-bottom: 1.5rem;
+		}
+
+		.theme-toggle button {
+			background: linear-gradient(135deg, #0073e6, #005bb5);
+			color: white;
+			border: none;
+			padding: 10px 18px;
+			font-size: 1rem;
+			font-weight: bold;
+			cursor: pointer;
+			border-radius: 6px;
+			transition: background 0.3s, transform 0.2s;
+		}
+
+		.theme-toggle button:hover {
+			background: linear-gradient(135deg, #005bb5, #004494);
+			transform: scale(1.05);
+		}
+
+		/* Tabs */
+		.tabs {
+			display: flex;
+			justify-content: center;
+			gap: 10px;
+			border-bottom: 3px solid #0073e6;
+			padding-bottom: 0.5rem;
+			margin-bottom: 1.5rem;
+		}
+
+		.tablinks {
+			background-color: #0073e6;
+			color: white;
+			border: none;
+			outline: none;
+			cursor: pointer;
+			padding: 12px 24px;
+			transition: background 0.3s, transform 0.2s;
+			font-size: 1rem;
+			font-weight: bold;
+			border-radius: 8px 8px 0 0;
+		}
+
+		.tablinks:hover {
+			background-color: #005bb5;
+			transform: translateY(-2px);
+		}
+
+		.tablinks.active {
+			background-color: #005bb5;
+			transform: translateY(-2px);
+		}
+
+		.tabcontent {
+			display: none;
+			padding: 20px;
+			background: white;
+			border-radius: 8px;
+			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+			animation: fadeIn 0.3s ease-in-out;
+		}
+
+		.tabcontent:first-of-type {
+			display: block;
+		}
+
+		/* Smooth Fade In */
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+				transform: translateY(-10px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		/* Reference List */
+		ol {
+			padding-left: 0;
+			counter-reset: reference-counter;
+		}
+
+		/* Reference Item */
+		ol li {
+			background: white;
+			padding: 1.2rem;
+			border-radius: 8px;
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+			margin-bottom: 1.2rem;
+			list-style: none;
+			position: relative;
+			counter-increment: reference-counter;
+			transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+		}
+
+		/* Numbering */
+		ol li::before {
+			content: "[" counter(reference-counter) "] ";
+			font-weight: bold;
+			color: #0073e6;
+			font-size: 1.1rem;
+			margin-right: 5px;
+		}
+
+		/* Hover Effect */
+		ol li:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+		}
+
+		/* Copy Button */
+		.copy-btn {
+			background: #0073e6;
+			color: white;
+			border: none;
+			padding: 0.4rem 0.8rem;
+			font-size: 0.9rem;
+			cursor: pointer;
+			border-radius: 5px;
+			margin-left: 10px;
+			transition: background 0.3s, transform 0.2s;
+		}
+
+		.copy-btn:hover {
+			background: #005bb5;
+			transform: scale(1.05);
+		}
+
+		/* Back to Top Button */
+		.back-to-top {
+			display: none;
+			position: fixed;
+			bottom: 20px;
+			right: 20px;
+			background: #0073e6;
+			color: white;
+			border: none;
+			padding: 10px 15px;
+			font-size: 1rem;
+			cursor: pointer;
+			border-radius: 5px;
+			transition: background 0.3s, transform 0.2s;
+		}
+
+		.back-to-top:hover {
+			background: #005bb5;
+			transform: scale(1.1);
+		}
+
+		/* Dark Mode */
+		body.dark-mode {
+			background-color: #1a1a1a;
+			color: #eaeaea;
+		}
+
+		body.dark-mode .tablinks {
+			background-color: #ffcc00;
+			color: #222;
+		}
+
+		body.dark-mode .tablinks:hover {
+			background-color: #e6b800;
+		}
+
+		body.dark-mode .tabcontent {
+			background: #2a2a2a;
+			color: #eaeaea;
+			box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+		}
+
+		body.dark-mode li {
+			background: #333;
+		}
+
+		body.dark-mode .theme-toggle button,
+		body.dark-mode .copy-btn {
+			background: #ffcc00;
+			color: #222;
+		}
+
+		body.dark-mode h1 {
+			color: #f4f4f4;
+		}
+
+		/* Responsive */
+		@media (max-width: 768px) {
+			body {
+				padding: 1rem;
+			}
+
+			h1 {
+				font-size: 1.8rem;
+			}
+
+			.tabs {
+				flex-direction: column;
+				align-items: center;
+			}
+
+			.tablinks {
+				width: 80%;
+				text-align: center;
+			}
+		}
+	</style>
 </head>
 
 <body>
-<!-- Theme Toggle -->
-<div class="theme-toggle">
-    <button onclick="toggleTheme()">🌙 Dark Mode</button>
-  </div>
-  
-  <h1>Bibliography for "State of the Art and Research Directions for Visual Conceptual Modeling in Robotics"</h1>
-  
-  <!-- Search Bar -->
-  <div class="search-container">
-	<input type="text" class="search-input" onkeyup="filterReferences()" placeholder="🔍 Search references...">
-  </div>
-  
+	<h1>Bibliography for "State of the Art and Research Directions for Visual Conceptual Modeling in Robotics"</h1>
 
-    <!-- Start of references -->
+	<div class="tabs">
+		<button class="tablinks" onclick="openTab(event, 'paperList')">Bibliography</button>
+		<button class="tablinks" onclick="openTab(event, 'table1')">Analysis table</button>
+		<button class="tablinks" onclick="openTab(event, 'table2')">Robotics topics</button>
+	</div>
 
-    <ol id="references"></ol>
+	<!-- Tab Content -->
+	<div id="paperList" class="tabcontent">
+		<!-- Search Bar -->
+		<div class="search-container">
+			<input type="text" class="search-input" onkeyup="filterReferences()" placeholder="🔍 Search references...">
+		</div>
+		<!-- Start of references -->
 
-    <!-- Add more references manually here -->
-<!-- Back to Top Button -->
-<button class="back-to-top" onclick="scrollToTop()">🔝 Top</button>
+		<ol id="references"></ol>
+	</div>
 
+	<div id="table1" class="tabcontent">
+		<h2>Table 1: Details of analysis per article</h2>
+		<div class="table-wrapper">
+			<div id="table-container"></div>
+		</div>
+	</div>
+
+	<div id="table2" class="tabcontent">
+		<h2>Table 2: Robotics topics per article</h2>
+		<div class="table-wrapper">
+			<div id="table2-container"></div>
+		</div>
+	</div>
+
+</body>
+<footer class="footer">
+    <div class="footer-container">
+        <p><em>"State of the Art and Research Directions for Visual Conceptual Modeling in Robotics"</em></p>
+        <p><a href="https://www.unifr.ch/inf/digits/en/" target="_blank">DIGITS Group</a></p>
+        <p class="copyright">© <span id="year"></span> University of Fribourg</p>
+    </div>
+</footer>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      loadBibTeX();
+	    // Hardcoded CSV Data
+		const csvData = `Publication Year,Author,Title,Publication Title,Role of robotic,Base language,Abstraction level,Expressiveness,Purpose,VML class,Visual variables
+2018,"Rabiser, Daniela; Prähofer, Herbert; Grünbacher, Paul; Petruzelka, Michael; Eder, Klaus; Angerer, Florian; Kromoser, Mario; Grimmer, Andreas","Multi-purpose, multi-level feature modeling of large-scale industrial software systems",SOSYM,Central,AST,Mixed,Mixed,Analysis/simulation,,
+2019,"Bernardi, Simona; Marrone, Stefano; Merseguer, José; Nardone, Roberto; Vittorini, Valeria",Towards a model-driven engineering approach for the assessment of non-functional properties using multi-formalism,SOSYM,Proof of concept,"UML, Petrinets",Mixed,Mixed,Code generation,,
+2022,"Medinacelli, Luis Palacios; Noyrit, Florian; Mraidha, Chokri",Augmenting model-based systems engineering with knowledge,MODELS,Central,UML,Mixed,Mixed,Model@runtime,,
+2023,"Langford, Michael Austin; Chan, Kenneth H.; Fleck, Jonathon Emil; McKinley, Philip K.; Cheng, Betty H. C.",MoDALAS: addressing assurance for learning-enabled autonomous systems in the face of uncertainty,SOSYM,Demonstration,"RELAX, KAOS",Mixed,Standard,Model@runtime,,
+2017,"Datta, Chandan; MacDonald, Bruce A.",Architecture of an Extensible Visual Programming Environment for Authoring Behaviour of Personal Service Robots,IRC,Central,LTLCreator,Mixed,Standard,Model@runtime,,
+2024,"Protin, Lionel; Aggoune-Mtalaa, Wassila; Kavka, Carlos",Practical design and implementation of an augmented reality based digital twin,MODELS,Demonstration,Node RED,Technical,Standard,Transformation,,
+2022,"Huang, Yining; Dhouib, Saadia; Medinacelli, Luis Palacios; Malenfant, Jacques",Enabling semantic interoperability of asset administration shells through an ontology-based modeling method,MODELS,Proof of concept,UML,Strategical,Mixed,Code generation,,
+2020,"Schönig, Stefan; Ackermann, Lars; Jablonski, Stefan; Ermer, Andreas",IoT meets BPM: a bidirectional communication architecture for IoT-aware process execution,SOSYM,Demonstration,BPMN,Mixed,Mixed,Transformation,,
+2024,"Wiesmayr, Bianca; Zoitl, Alois; Hästbacka, David",Modeling Service Choreographies and Collaborative Tasks for Autonomous Mixed-Fleet Systems,MODELS,Central,"BPMN, IEC 61499, SysML",Strategical,Standard,Transformation,,
+2021,"Uriagereka, Garazi Juez; Amparan, Estibaliz; Martinez, Cristina Martinez; Martinez, Jabier; Ibanez, Aurelien; Morelli, Matteo; Radermacher, Ansgar; Espinoza, Huascar",Design-time safety assessment of robotic systems using fault injection simulation in a model-driven approach,MODELS,Central,RobMoSys,Technical,Standard,Code generation,,
+2015,"Falcone, Yliès; Jaber, Mohamad; Nguyen, Thanh-Hung; Bozga, Marius; Bensalem, Saddek",Runtime verification of component-based systems in the BIP framework with formally-proved sound and complete instrumentation,SOSYM,Demonstration,BIP,Mixed,Mixed,Transformation,,
+2021,"Mayr-Dorn, Christoph; Winterer, Mario; Salomon, Christian; Hohensinger, Doris; Ramler, Rudolf",Considerations for using Block-Based Languages for Industrial Robot Programming - a Case Study,ROSE,Central,"Blockly, EPL",Technical,Mixed,Code generation,,
+2021,"Hammoudeh García, Nadia; Deshpande, Harshavardhan; Santos, André; Kahl, Björn; Bordignon, Mirko",Bootstrapping MDE development from ROS manual code: Part 2Model generation and leveraging models at runtime,SOSYM,Central,New DSL,Technical,Standard,Model@runtime,Graph,"Shape, Color, Horizontal position, Vertical position"
+2020,"Bertoa, Manuel F.; Burgueño, Loli; Moreno, Nathalie; Vallecillo, Antonio",Incorporating measurement uncertainty into OCL/UML primitive datatypes,SOSYM,Proof of concept,"OCL, UML",Technical,Standard,Analysis/simulation,,
+2015,"Nordmann, Arne; Wrede, Sebastian; Steil, Jochen",Modeling of movement control architectures based on motion primitives using domain-specific languages,ICRA,Central,"New DSL, SCXML, GraphML",Technical,Domain Specific,Transformation,Graph,"Shape, Color, Texture"
+2016,"Gammaitoni, Loïc; Hochgeschwender, Nico",RPSL meets lightning: A model-based approach to design space exploration of robot perception systems,SIMPAR,Central,"RLSP, Alloy",Mixed,Standard,Analysis/simulation,,
+2020,"Fossdal, Frikk H; Heldal, Rogardt; Dyvik, Jens; Rutle, Adrian",A parametric model for creating customized fabrication machines,MODELS,Central,Grasshopper,Technical,Standard,Code generation,,
+2022,"Senn, Eric; Bourdon, Lucie W. J.; Blouin, Dominique",Multi-paradigm modeling for early analysis of ROS-based robotic applications using a library of AADL models,MODELS,Central,AADL,Technical,Mixed,Analysis/simulation,,
+2020,"Woitsch, Robert",Industrial Digital Environments in Action: The OMiLAB Innovation Corner,POEM,Proof of concept,"BPMN, Petrinets",Strategical,Standard,Transformation,,
+2015,"Lettner, Daniela; Eder, Klaus; Grünbacher, Paul; Prähofer, Herbert",Feature modeling of two large-scale industrial software systems: Experiences and lessons learned,MODELS,Central,CVL,Strategical,Standard,Transformation,,
+2022,"Fend, Andreas; Bork, Dominik",CPSAML: a language and code generation framework for digital twin based monitoring of mobile cyber-physical systems,MODELS,Central,SysML,Mixed,Mixed,Code generation,,
+2020,"Cheng, Betty H. C.; Clark, Robert Jared; Fleck, Jonathon Emil; Langford, Michael Austin; McKinley, Philip K.",AC-ROS: assurance case driven adaptation for the robot operating system,MODELS,Central,GSN,Mixed,Standard,Transformation,,
+2022,"Somers, Richard J.; Clark, Andrew G.; Walkinshaw, Neil; Hierons, Robert M.",Reliable counterparts: efficiently testing causal relationships in digital twins,MODELS,Demonstration,Causal Directed Acyclic Graph,Technical,Mixed,Analysis/simulation,,
+2024,"Corradini, Flavio; Pettinari, Sara; Re, Barbara; Rossi, Lorenzo; Tiezzi, Francesco",A technique for discovering BPMN collaboration diagrams,SOSYM,Proof of concept,BPMN,Strategical,Standard,Code generation,,
+2022,"Paredis, Randy; Vangheluwe, Hans",Towards a digital Z framework based on a family of architectures and a virtual knowledge graph,MODELS,Demonstration,Knowledge Graph (KG),Mixed,Standard,Transformation,,
+2020,"Ebert, Sebastian",A model-driven approach for cobotic cells based on Petri nets,MODELS,Central,Petrinets,Mixed,Mixed,Analysis/simulation,,
+2025,"Raja, Jeshwitha Jesus; Raju, Akhila Vissom; Brings, Jennifer; Daun, Marian",Extending Goal Models with Execution Orders: An Investigation of the Impact on Comprehensibility,ER,Demonstration,GRL,Strategical,Mixed,Code generation,,
+2024,"Predoaia, Ionut; Harbin, James; Gerasimou, Simos; Vasiliou, Christina; Kolovos, Dimitris; García-Domínguez, Antonio",Tree-Based versus Hybrid Graphical-Textual Model Editors: An Empirical Study of Testing Specifications,MODELS,Demonstration,Ecore,Mixed,Standard,Code generation,,
+2024,"Gil, Santiago; Kamburjan, Eduard; Talasila, Prasad; Larsen, Peter Gorm",An architecture for coupled digital twins with semantic lifting,SOSYM,Demonstration,"Knowledge Graph (KG), UML",Mixed,Mixed,Code generation,,
+2022,"Ye, Kangfeng; Cavalcanti, Ana; Foster, Simon; Miyazawa, Alvaro; Woodcock, Jim",Probabilistic modelling and verification using RoboChart and PRISM,SOSYM,Central,"UML, PRISM",Technical,Mixed,Code generation,,
+2023,"Daun, Marian; Manjunath, Meenakshi; Jesus Raja, Jeshwitha",Safety Analysis of Human Robot Collaborations with GRL Goal Models,ER,Central,"GRL, IStar ",Mixed,Standard,Analysis/simulation,,
+2019,"Miyazawa, Alvaro; Ribeiro, Pedro; Li, Wei; Cavalcanti, Ana; Timmis, Jon; Woodcock, Jim",RoboChart: modelling and verification of the functional behaviour of robotic applications,SOSYM,Central,"New DSL, UML",Mixed,Domain Specific,Transformation,"Hybrid: Plex, Box, Iconic","Shape, Color, Texture, Horizontal position, Vertical position"
+2020,"Neghina, Mihai; Zamfirescu, Constantin-Bala; Pierce, Ken",Early-stage analysis of cyber-physical production systems through collaborative modelling,SOSYM,Proof of concept,SysML,Mixed,Mixed,Transformation,,
+2021,"Babaei, Majid; Jahed, Karim; Dingel, Juergen",Solving the RoboSoccer challenge problem with UML-RT and papyrus-RT,MODELS,Central,UML,Mixed,Mixed,Code generation,,
+2022,"Fossdal, Frikk H.; Heldal, Rogardt; Dyvik, Jens; Rutle, Adrian",Fabricatable axis: an approach for modelling customized fabrication machines,SOSYM,Central,"Grasshopper, New DSL",Technical,Standard,Analysis/simulation,Graph,Shape
+2017,"Tilley, Eric; Gray, Jeff",Dronely: a visual block programming language for the control of drones,ACM SE,Central,Blockly,Mixed,Mixed,Code generation,,
+2016,"Lotz, Alex; Hamann, Arne; Lütkebohle, Ingo; Stampfer, Dennis; Lutz, Matthias; Schlegel, Christian",Modeling Non-Functional Application Domain Constraints for Component-Based Robotics Software Systems,DSLROB,Central,"Ecore, New DSL",Technical,Domain Specific,Code generation,"Hybrid: Plex, Box, Iconic","Shape, Color, Size, Horizontal position, Vertical position"
+2016,"Butting, Arvid; Rumpe, Bernhard; Schulze, Christoph; Thomas, Ulrike; Wortmann, Andreas","Modeling Reusable, Platform-Independent Robot Assembly Processes",DSLROB,Central,UML,Mixed,Mixed,Code generation,,
+2016,"Zander, Stefan; Heppner, Georg; Neugschwandtner, Georg; Awad, Ramez; Essinger, Marc; Ahmed, Nadia",A Model-Driven Engineering Approach for ROS using Ontological Semantics,DSLROB,Central,IEC 61499,Mixed,Standard,Code generation,,
+2017,"Zhang, Lei; Huaxi; Zhang; Fang, Zheng; Xiang, Xianbo; Huchard, Marianne; Zapata, Rene",Towards An Architecture-Centric Approach to Manage Variability of Cloud Robotics,DSLROB,Central,New DSL,Strategical,Domain Specific,Code generation,"Hybrid: Plex, Box, Iconic","Shape, Size, Horizontal position, Vertical position"
+2016,"Paulius, D.; Huang, Y.; Milton, R.; Buchanan, W. D.; Sam, J.; Sun, Y.",Functional object-oriented network for manipulation learning,IROS,Central,New DSL,Mixed,Standard,Transformation,Graph,"Shape, Color"
+2016,"Degroote, A.; Koch, P.; Lacroix, S.",Integrating realistic simulation engines within the MORSE framework,IROS,Central,realistic Flight Dynamic Model (FDM),Mixed,Mixed,Code generation,,
+2020,"Zhang, Z.; Zhu, Y.; Zhu, S. -C.",Graph-based hierarchical knowledge representation for robot task transfer from virtual to physical world,IROS,Central,STC-And-Or-Graph (AOG),Technical,Standard,Analysis/simulation,,
+2018,"Chitnis, R.; Kaelbling, L. P.; Lozano-Pérez, T.",Integrating human-provided information into belief state representation using dynamic factorization,IROS,Central,Factor Graphs,Technical,Standard,Analysis/simulation,,
+2024,"Wang, J.; Laurenzi, A.; Tsagarakis, N.",Autonomous behavior planning for humanoid loco-manipulation through grounded language model,IROS,Central,XML,Mixed,Standard,Transformation,,
+2016,"Datta, C.; Broadbent, E.; MacDonald, B. A.",Formalizing the specifications of a domain-specific language for authoring behaviour of personal service robots,SIMPAR,Central,"RBDL, New DSL",Strategical,Domain Specific,Code generation,Plex,
+2016,"Lotz, A.; Hamann, A.; Lange, R.; Heinzemann, C.; Staschulat, J.; Kesel, V.; Stampfer, D.; Lutz, M.; Schlegel, C.",Combining robotics component-based model-driven development with a model-based performance analysis,SIMPAR,Central,"Ecore, New DSL",Technical,Domain Specific,Code generation,"Hybrid: Plex, Box, Iconic","Shape, Size, Color, Texture, Horizontal position, Vertical position"
+
+`;
+function parseCSV(csv) {
+    const rows = [];
+    let insideQuotes = false;
+    let currentField = "";
+    let currentRow = [];
+
+    for (let i = 0; i < csv.length; i++) {
+        const char = csv[i];
+
+        if (char === '"' && csv[i + 1] !== '"') { 
+            insideQuotes = !insideQuotes;
+            continue;
+        }
+
+        if (char === ',' && !insideQuotes) {
+            currentRow.push(currentField.trim());
+            currentField = "";
+        } else if (char === '\n' && !insideQuotes) {
+            currentRow.push(currentField.trim());
+            rows.push(currentRow);
+            currentRow = [];
+            currentField = "";
+        } else {
+            currentField += char;
+        }
+    }
+
+    if (currentField) {
+        currentRow.push(currentField.trim());
+    }
+    if (currentRow.length > 0) {
+        rows.push(currentRow);
+    }
+
+    return rows;
+}
+const csvDataTable2 = `Topic,X3VWHIRA,T8LJW62Q,FCBRF497,5BA4L26L,85FF6JR6,8XDMHQJV,5G5HI3XQ,TIL7PW45,NL3XR944,IBBNNGFN,RLYP7SXK,3R7QDBA2,JQZ6DA6S,9R7KDB9H,YYC6TUT4,S8K85NNG,LDLIQQ2P,IPUS4RLV,IK86CHQU,BRQ6YGJR,GFRJ5B7Y,TRTWT42W,QPIV79E8,56DX6LS3,ZNW87EEN,WQABAXZT,CIGZSJGV,8S44FKAI,DV77UNUM,XDW2AK2X,X5MJC39A,3Q57GJ4B,2FH3PLI7,9YVGMRSV,GKDZJBIA,AKV8C3RJ,P98ZQWCQ,I9V7L55Z,T5AGVET2,F42PDRI9,RBRF8WRX,KVTU8J6J,4U6TSV53,8UMNNWPR,DIHRK9J7,VK53NRP7,XLGJBQZB
+2 Kinematics,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+3 Dynamics,,,x,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+4 Mechanism and Actuation,,,,,,,,,,,,,,x,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+5 Sensing and Estimation,,,,,,,,,,,,,,,,,,,,,,,,,,x,,,,,,,,,,,,,,,,,,,,,
+6 Model Identification,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+7 Motion Planning,,,x,,,,,x,x,,,,,,,,,,,,,x,,,,,,,,,,,,,,,,,,,,,x,,,,
+8 Motion Control,,,x,,,,,x,,,,,,x,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+9 Force Control,,,,,,,,,,,,,,x,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+10 Redundant Robots,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+11 Robots with Flexible Elements,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+12 Robotic Systems Architectures and Programming,x,x,x,x,x,,,x,,x,,x,x,x,x,x,x,x,,x,,x,,x,x,x,x,,x,,x,x,,x,x,x,x,x,x,x,,,,,x,x,x
+13 Behavior-Based Systems,x,,,x,,,,,x,,x,,x,,x,,x,,,x,,x,x,x,,,,,,,x,x,,x,,,,x,x,,x,,,,x,x,
+14 AI Reasoning Methods for Robotics,,,,,,,,,,,,,,,,,,,,,,,,x,,,,,,,,,,,,,,,,,x,,,,,,
+15 Robot Learning,,,x,,,,,,,,,,,,,,,,,,,x,,,,,,,,,,,,,,,,,,,,,x,x,,,
+16 Design and Performance Evaluation,,,,,,,,,,,,,,,,,,,,,,,,,x,x,,,,,,x,,,x,,,,,,,x,,,,,x
+17 Limbed Systems,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+18 Parallel Mechanisms,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+19 Robot Hands,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+20 Snake-Like and Continuum Robots,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+21 Actuators for Soft Robotics,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+22 Modular Robots,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+23 Biomimetic Robots,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+24 Wheeled Robots,,,,,,x,,,,x,x,,x,,x,,x,,,,x,,x,x,,,x,,,,x,,,x,,,,x,,,,,,,,,
+25 Underwater Robots,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+26 Flying Robots,,,,,,,,,,,,x,,,,,,,,,,,x,,,,,,,,,,,,,x,,,,,,,,,,,
+27 Micro-/Nanorobots,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+28 Force and Tactile Sensing,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"29 Inertial Sensing, GPS and Odometry",,,,,,,,,,,,,,,x,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+30 Sonar Sensing,,,,,,,,,,x,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+31 Range Sensing,,,,,,,,,,,,,,,,,,,,,,,,x,,,x,,,,,,,,,,,,,,,,,,,,
+32 3-D Vision for Navigation and Grasping,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,x,,
+33 Visual Object Class Recognition,,,,,,,,,,,,,,,,,,,,,,,,x,,,,,,,,,,,,,,,,,x,,,,,,
+34 Visual Servoing,,,,,,,,,,,x,,,,,,,,,,x,,,,,,x,,,,,,,,,,,,,,,,,,,,
+35 Multisensor Data Fusion,,,,,,,,,,,,,,,,,,,,,,,,,,,x,x,,x,,,,,,,,,,,,,,,,,
+36 Motion for Manipulation Tasks,x,,x,,,,,x,,,,,,,,,,,,x,,,,,,,,,,,,,,,,,,,,,,,x,,,,
+37 Contact Modeling and Manipulation,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+38 Grasping,,,x,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+39 Cooperative Manipulation,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+40 Mobility and Manipulation,,,,,,x,,,,,,,,,,,,,,,x,,,,,,x,,,,,,,,,,,x,,,,,,,x,,
+41 Active Manipulation for Perception,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+42 Haptics,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+43 Telerobotics,,,,,,,x,,,,,,,,,,,,,,,,,,,,,,,,x,,,,,,,,,,,,,,,,
+44 Networked Robots,,,,,,,,,,,,,,,,,,,,,,,x,,,,,,,,x,,,,,,,,,x,,,,,,,
+45 World Modeling,,,,,,,,,,,,,,,,,,,,,x,,,,,,,,,,,,,,,,,,,,,,,,,,
+46 Simultaneous Localization and Mapping,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+47 Motion Planning and Obstacle Avoidance,,,,,,,,x,x,,,,,,,,x,,,,,x,,x,,,,,,,x,,,,,,,,x,,,,x,,,,
+48 Modeling and Control of Legged Robots,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+49 Modeling and Control of Wheeled Mobile Robots,,,,x,,x,,,,x,x,,x,,x,,x,,,,,,,x,,,x,,,,x,,,x,,,,x,,,,,,,,,
+50 Modeling and Control of Robots on Rough Terrain,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+51 Modeling and Control of Underwater Robots,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+52 Modeling and Control of Aerial Robots,,,,,,,,,,,,x,,,,,,,,,,,,,,,,,,,,,,,,x,,,,,,x,,,,,
+53 Multiple Mobile Robot Systems,,,,,,x,,,,,,,,,,,,,,,,,x,,,,,,x,,x,,,,,,,,,,,,,,,,
+54 Industrial Robotics,x,x,,,,,,x,x,,,,,x,,x,,x,,x,,x,,,,,,x,x,x,x,x,x,,,,,x,x,,,,,,,,
+55 Space Robotics,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+56 Robotics in Agriculture and Forestry,,,,,,,,,,,,,,,,,,,,,,,x,,,,,,x,,,,,,,,,,,,,,,,,,
+57 Robotics in Construction,,,,,,,,,,,,,,,,,,,,,,,,x,,,,,,,,,,,,,,,,,,,,,,,
+58 Robotics in Hazardous Applications,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,x,,,,,,,,,,,,,,,,
+59 Robotics in Mining,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+60 Disaster Robotics,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+61 Robot Surveillance and Security,,,,,,,,,,,,,,,,,x,,,,,,,,,,,,x,,,,,,,,,,,,,,,,,,
+62 Intelligent Vehicles,,,,,,,,,,,,,,,,,x,,,,,,,x,,,,,,,,,,x,,,,,,,,,,,,,
+63 Medical Robotics and Computer-Integrated Surgery,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+64 Rehabilitation and Health Care Robotics,,,,x,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,x,
+65 Domestic Robotics,,,x,,,,,,,,,,x,,,,,,,,,,,,,,x,,,,,,,,,,,,,,,,x,x,,,
+66 Robotics Competitions and Challenges,,,,,,,,,,,,,,,x,,,,,,x,,,,,,,,,,,,,,,,,,,,,,,,,,
+67 Humanoids,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,x,,
+68 Human Motion Reconstruction,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+69 Physical Human-Robot Interaction,x,x,,,,,,,x,,,,,,,x,,,,,,,,,,,x,x,,,,,,,,,,,,,,,,,,,
+70 Human-Robot Augmentation,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+71 Cognitive Human-Robot Interaction,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+72 Social Robotics,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+73 Socially Assistive Robotics,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+74 Learning from Humans,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,x,,,,,,
+75 Biologically Inspired Robotics,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+76 Evolutionary Robotics,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+77 Neurorobotics: From Vision to Action,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+78 Perceptual Robotics,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+79 Robotics for Education,,,,,,,,,,x,x,,,,,,,,x,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+80 Roboethics: Social and Ethical Implications,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+`;
+// Mapping of keys to titles
+const paperTitles = {
+    "T8LJW62Q": "Extending Goal Models with Execution Orders: An Investigation of the Impact on Comprehensibility",
+    "X3VWHIRA": "Safety Analysis of Human Robot Collaborations with GRL Goal Models",
+    "FCBRF497": "Modeling of movement control architectures based on motion primitives using domain-specific languages",
+    "5BA4L26L": "Architecture of an Extensible Visual Programming Environment for Authoring Behaviour of Personal Service Robots",
+    "S8K85NNG": "A model-driven approach for cobotic cells based on Petri nets",
+    "GKDZJBIA": "A parametric model for creating customized fabrication machines",
+    "LDLIQQ2P": "AC-ROS: assurance case driven adaptation for the robot operating system",
+    "3R7QDBA2": "Augmenting model-based systems engineering with knowledge",
+    "JQZ6DA6S": "CPSAML: a language and code generation framework for digital twin based monitoring of mobile cyber-physical systems",
+    "9R7KDB9H": "Design-time safety assessment of robotic systems using fault injection simulation in a model-driven approach",
+    "85FF6JR6": "Enabling semantic interoperability of asset administration shells through an ontology-based modeling method",
+    "IPUS4RLV": "Feature modeling of two large-scale industrial software systems: Experiences and lessons learned",
+    "8XDMHQJV": "Modeling Service Choreographies and Collaborative Tasks for Autonomous Mixed-Fleet Systems",
+    "IBBNNGFN": "Multi-paradigm modeling for early analysis of ROS-based robotic applications using a library of AADL models",
+    "5G5HI3XQ": "Practical design and implementation of an augmented reality based digital twin",
+    "NL3XR944": "Reliable counterparts: efficiently testing causal relationships in digital twins",
+    "YYC6TUT4": "Solving the RoboSoccer challenge problem with UML-RT and papyrus-RT",
+    "RLYP7SXK": "Towards a digital Z framework based on a family of architectures and a virtual knowledge graph",
+    "TIL7PW45": "Tree-Based versus Hybrid Graphical-Textual Model Editors: An Empirical Study of Testing Specifications",
+    "IK86CHQU": "Industrial Digital Environments in Action: The OMiLAB Innovation Corner",
+    "BRQ6YGJR": "Considerations for using Block-Based Languages for Industrial Robot Programming - a Case Study",
+    "GFRJ5B7Y": "RPSL meets lightning: A model-based approach to design space exploration of robot perception systems",
+    "QPIV79E8": "A technique for discovering BPMN collaboration diagrams",
+    "TRTWT42W": "An architecture for coupled digital twins with semantic lifting",
+    "CIGZSJGV": "Bootstrapping MDE development from ROS manual code: Part 2—Model generation and leveraging models at runtime",
+    "XDW2AK2X": "Early-stage analysis of cyber-physical production systems through collaborative modelling",
+    "ZNW87EEN": "Fabricatable axis: an approach for modelling customized fabrication machines",
+    "DV77UNUM": "Incorporating measurement uncertainty into OCL/UML primitive datatypes",
+    "8S44FKAI": "IoT meets BPM: a bidirectional communication architecture for IoT-aware process execution",
+    "56DX6LS3": "MoDALAS: addressing assurance for learning-enabled autonomous systems in the face of uncertainty",
+    "2FH3PLI7": "Multi-purpose, multi-level feature modeling of large-scale industrial software systems",
+    "WQABAXZT": "Probabilistic modelling and verification using RoboChart and PRISM",
+    "X5MJC39A": "RoboChart: modelling and verification of the functional behaviour of robotic applications",
+    "9YVGMRSV": "Runtime verification of component-based systems in the BIP framework with formally-proved sound and complete instrumentation",
+    "3Q57GJ4B": "Towards a model-driven engineering approach for the assessment of non-functional properties using multi-formalism",
+    "AKV8C3RJ": "Dronely: a visual block programming language for the control of drones",
+    "P98ZQWCQ": "Modeling Non-Functional Application Domain Constraints for Component-Based Robotics Software Systems",
+    "I9V7L55Z": "Modeling Reusable, Platform-Independent Robot Assembly Processes",
+    "T5AGVET2": "A Model-Driven Engineering Approach for ROS using Ontological Semantics",
+    "F42PDRI9": "Towards An Architecture-Centric Approach to Manage Variability of Cloud Robotics",
+    "RBRF8WRX": "Functional object-oriented network for manipulation learning",
+    "KVTU8J6J": "Integrating realistic simulation engines within the MORSE framework",
+    "4U6TSV53": "Graph-based hierarchical knowledge representation for robot task transfer from virtual to physical world",
+    "8UMNNWPR": "Integrating human-provided information into belief state representation using dynamic factorization",
+    "DIHRK9J7": "Autonomous behavior planning for humanoid loco-manipulation through grounded language model",
+    "VK53NRP7": "Formalizing the specifications of a domain-specific language for authoring behaviour of personal service robots",
+    "XLGJBQZB": "Combining robotics component-based model-driven development with a model-based performance analysis"
+};
+
+// Function to generate Table 2 with Titles instead of Keys
+function generateTable2() {
+    const tableContainer = document.getElementById("table2-container");
+    const data = parseCSV(csvDataTable2);
+
+    if (data.length < 2) return;
+
+    const table = document.createElement("table");
+    table.classList.add("styled-table");
+
+    // Replace keys with titles in header row
+    const thead = document.createElement("thead");
+    const headerRow = document.createElement("tr");
+    data[0].forEach(header => {
+        const th = document.createElement("th");
+        th.textContent = paperTitles[header] || header; // Replace key with title if available
+        headerRow.appendChild(th);
     });
-  
-    // Hardcoded BibTeX Data
-    const bibtexData = `
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    // Generate table body
+    const tbody = document.createElement("tbody");
+    for (let i = 1; i < data.length; i++) {
+        const row = document.createElement("tr");
+        data[i].forEach((cell, index) => {
+            const td = document.createElement("td");
+            if (cell === "x") {
+                td.innerHTML = "✔️"; // Replace 'X' with a checkmark
+                td.style.textAlign = "center"; // Center-align checkmarks
+            } else {
+                td.textContent = cell;
+            }
+            row.appendChild(td);
+        });
+        tbody.appendChild(row);
+    }
+    table.appendChild(tbody);
+
+    tableContainer.appendChild(table);
+}
+// Load Table 2 when the page loads
+document.addEventListener("DOMContentLoaded", generateTable2);
+
+    function generateTable() {
+        const tableContainer = document.getElementById("table-container");
+        const data = parseCSV(csvData);
+
+        if (data.length < 2) return;
+
+        const table = document.createElement("table");
+        table.classList.add("styled-table");
+
+        // Generate table header
+        const thead = document.createElement("thead");
+        const headerRow = document.createElement("tr");
+        data[0].forEach(header => {
+            const th = document.createElement("th");
+            th.textContent = header;
+            headerRow.appendChild(th);
+        });
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+
+        // Generate table body
+        const tbody = document.createElement("tbody");
+        for (let i = 1; i < data.length; i++) {
+            const row = document.createElement("tr");
+            data[i].forEach(cell => {
+                const td = document.createElement("td");
+                td.textContent = cell;
+                row.appendChild(td);
+            });
+            tbody.appendChild(row);
+        }
+        table.appendChild(tbody);
+
+        tableContainer.appendChild(table);
+    }
+
+    document.addEventListener("DOMContentLoaded", generateTable);
+
+	function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    
+    // Hide all tab contents
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Remove 'active' class from all tab buttons
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+    }
+
+    // Show the selected tab and mark it as active
+    document.getElementById(tabName).style.display = "block";
+    evt?.currentTarget.classList.add("active"); // Handle cases where evt is null
+}
+
+// Automatically open the first tab on page load
+document.addEventListener("DOMContentLoaded", function() {
+    let firstTab = document.getElementsByClassName("tablinks")[0]; 
+    if (firstTab) {
+        firstTab.click(); // Simulate a click on the first tab
+    }
+});
+	document.addEventListener("DOMContentLoaded", function () {
+		loadBibTeX();
+	});
+
+	// Hardcoded BibTeX Data
+	const bibtexData = `
       @inproceedings{tilleydronely2017,
 	title        = {Dronely: A Visual Block Programming Language for the Control of Drones},
 	author       = {Tilley, Eric and Gray, Jeff},
@@ -888,127 +1420,127 @@
 	
 }
     `;
-    function loadBibTeX() {
-    const referencesList = document.getElementById("references");
-    referencesList.innerHTML = ""; // Clear previous data
+	function loadBibTeX() {
+		const referencesList = document.getElementById("references");
+		referencesList.innerHTML = ""; // Clear previous data
 
 
-    // Split entries, keeping multiple lines intact
-    const entries = bibtexData.split(/@\w+\{/).filter(entry => entry.trim());
-    entries.forEach(entry => {
-      const bibObj = parseBibTeX(entry);
-      if (bibObj) {
-        referencesList.appendChild(createReferenceHTML(bibObj));
-      }
-    });
-  }
-
-  function parseBibTeX(entry) {
-    const bibObj = {};
-    const lines = entry.split("\n").map(line => line.trim()).filter(line => line);
-
-    // Extract entry type and ID correctly
-    // const firstLineMatch = lines[0].match(/^@(\w+)\{([^,]+),?/);
-    // if (!firstLineMatch) {
-    //     console.error("Invalid BibTeX entry format:", entry);
-    //     return null;
-    // }
-    // bibObj.type = firstLineMatch[1]; // e.g., inproceedings, article
-    bibObj.id = lines[0].slice(0, -1);   // e.g., tilleydronely2017
-
-    let currentKey = null;
-    let currentValue = "";
-
-    for (let i = 1; i < lines.length; i++) {
-        let line = lines[i];
-
-        // Match key-value pair (including numbers like `year = 2017,`)
-        let match = line.match(/^(\w+)\s*=\s*\{?(.*)/);
-        if (match) {
-            if (currentKey) {
-                // Save previous key-value pair
-                bibObj[currentKey.toLowerCase()] = currentValue.trim();
-            }
-            currentKey = match[1].toLowerCase();
-            currentValue = match[2]; // Start capturing the value
-
-            // Check if the line ends with `},` (single-line case)
-            if (currentValue.endsWith("},")) {
-                currentValue = currentValue.slice(0, -2);
-                bibObj[currentKey] = currentValue.trim();
-                currentKey = null; // Reset key
-                currentValue = "";
-            }
-			//check if line ends with `,`
-			if (currentValue.endsWith(",")) {
-				currentValue = currentValue.slice(0, -1);
-				bibObj[currentKey] = currentValue.trim();
-				currentKey = null; // Reset key
-				currentValue = "";
+		// Split entries, keeping multiple lines intact
+		const entries = bibtexData.split(/@\w+\{/).filter(entry => entry.trim());
+		entries.forEach(entry => {
+			const bibObj = parseBibTeX(entry);
+			if (bibObj) {
+				referencesList.appendChild(createReferenceHTML(bibObj));
 			}
-		} else if (currentKey) {
-			// Handle multi-line values
-			currentValue += " " + line.replace(/},?$/, ""); // Trim closing brace if it's a continuation
+		});
+	}
 
-        }
-    }
+	function parseBibTeX(entry) {
+		const bibObj = {};
+		const lines = entry.split("\n").map(line => line.trim()).filter(line => line);
 
-    // Save last key-value pair
-    if (currentKey) {
-        bibObj[currentKey.toLowerCase()] = currentValue.trim();
-    }
+		// Extract entry type and ID correctly
+		// const firstLineMatch = lines[0].match(/^@(\w+)\{([^,]+),?/);
+		// if (!firstLineMatch) {
+		//     console.error("Invalid BibTeX entry format:", entry);
+		//     return null;
+		// }
+		// bibObj.type = firstLineMatch[1]; // e.g., inproceedings, article
+		bibObj.id = lines[0].slice(0, -1);   // e.g., tilleydronely2017
 
-    return bibObj;
-}
-  
-    function createReferenceHTML(bibObj) {
-      const li = document.createElement("li");
-	  // add class class reference 
-	  li.classList.add("reference");
-      li.id = bibObj.id;
-  
-      const authorText = bibObj.author ? `<b>${bibObj.author}</b>, ` : "";
-      const titleText = `<i>${bibObj.title}</i>`;
-      const bookText = bibObj.booktitle ? `, in <i>${bibObj.booktitle}</i>` : "";
-      const publisherText = bibObj.publisher ? `, ${bibObj.publisher}` : "";
-      const yearText = bibObj.year ? `, ${bibObj.year}` : "";
-      const doiText = bibObj.doi ? ` DOI: <a href="https://doi.org/${bibObj.doi}" target="_blank">${bibObj.doi}</a>.` : "";
-  
-      li.innerHTML = `${authorText} ${titleText} ${bookText} ${publisherText} ${yearText}.${doiText}`;
-  
-      return li;
-    }
-  
-  // Scroll to Top
-  function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
+		let currentKey = null;
+		let currentValue = "";
 
-  // Show Back to Top Button
-  window.onscroll = function () {
-    document.querySelector(".back-to-top").style.display = 
-      window.scrollY > 300 ? "block" : "none";
-  };
+		for (let i = 1; i < lines.length; i++) {
+			let line = lines[i];
 
-  // Filter References
-  function filterReferences() {
-    let filter = document.querySelector(".search-input").value.toLowerCase();
-    let items = document.querySelectorAll(".reference");
-    items.forEach(item => {
-      item.style.display = item.innerText.toLowerCase().includes(filter) ? "block" : "none";
-    });
-  }
-    function toggleTheme() {
-      document.body.classList.toggle("dark-mode");
-    }
-	  // Copy Citation to Clipboard
-	  function copyCitation(id) {
-    const text = document.getElementById(id).innerText;
-    navigator.clipboard.writeText(text);
-    alert("Copied to clipboard!");
-  }
+			// Match key-value pair (including numbers like `year = 2017,`)
+			let match = line.match(/^(\w+)\s*=\s*\{?(.*)/);
+			if (match) {
+				if (currentKey) {
+					// Save previous key-value pair
+					bibObj[currentKey.toLowerCase()] = currentValue.trim();
+				}
+				currentKey = match[1].toLowerCase();
+				currentValue = match[2]; // Start capturing the value
 
-  </script>
+				// Check if the line ends with `},` (single-line case)
+				if (currentValue.endsWith("},")) {
+					currentValue = currentValue.slice(0, -2);
+					bibObj[currentKey] = currentValue.trim();
+					currentKey = null; // Reset key
+					currentValue = "";
+				}
+				//check if line ends with `,`
+				if (currentValue.endsWith(",")) {
+					currentValue = currentValue.slice(0, -1);
+					bibObj[currentKey] = currentValue.trim();
+					currentKey = null; // Reset key
+					currentValue = "";
+				}
+			} else if (currentKey) {
+				// Handle multi-line values
+				currentValue += " " + line.replace(/},?$/, ""); // Trim closing brace if it's a continuation
+
+			}
+		}
+
+		// Save last key-value pair
+		if (currentKey) {
+			bibObj[currentKey.toLowerCase()] = currentValue.trim();
+		}
+
+		return bibObj;
+	}
+
+	function createReferenceHTML(bibObj) {
+		const li = document.createElement("li");
+		// add class class reference 
+		li.classList.add("reference");
+		li.id = bibObj.id;
+
+		const authorText = bibObj.author ? `<b>${bibObj.author}</b>, ` : "";
+		const titleText = `<i>${bibObj.title}</i>`;
+		const bookText = bibObj.booktitle ? `, in <i>${bibObj.booktitle}</i>` : "";
+		const publisherText = bibObj.publisher ? `, ${bibObj.publisher}` : "";
+		const yearText = bibObj.year ? `, ${bibObj.year}` : "";
+		const doiText = bibObj.doi ? ` DOI: <a href="https://doi.org/${bibObj.doi}" target="_blank">${bibObj.doi}</a>.` : "";
+
+		li.innerHTML = `${authorText} ${titleText} ${bookText} ${publisherText} ${yearText}.${doiText}`;
+
+		return li;
+	}
+
+	// Scroll to Top
+	function scrollToTop() {
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	}
+
+	// Show Back to Top Button
+	window.onscroll = function () {
+		document.querySelector(".back-to-top").style.display =
+			window.scrollY > 300 ? "block" : "none";
+	};
+
+	// Filter References
+	function filterReferences() {
+		let filter = document.querySelector(".search-input").value.toLowerCase();
+		let items = document.querySelectorAll(".reference");
+		items.forEach(item => {
+			item.style.display = item.innerText.toLowerCase().includes(filter) ? "block" : "none";
+		});
+	}
+	function toggleTheme() {
+		document.body.classList.toggle("dark-mode");
+	}
+	// Copy Citation to Clipboard
+	function copyCitation(id) {
+		const text = document.getElementById(id).innerText;
+		navigator.clipboard.writeText(text);
+		alert("Copied to clipboard!");
+	}
+
+</script>
 </body>
 
 </html>
